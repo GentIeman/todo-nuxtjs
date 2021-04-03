@@ -38,21 +38,21 @@
               </div>
             </div>
           </section>
-          <!--          <section class="modal-window-wrapper">-->
-          <!--            <div class="full-size-card">-->
-          <!--              <vs-checkbox dark class="card__checkbox"></vs-checkbox>-->
-          <!--              <div class="card__main-data main-data">-->
-          <!--                <header>-->
-          <!--                  <h3 class="card__title title">{{ dataTask.title }}</h3>-->
-          <!--                </header>-->
-          <!--                <p class="card__date date">{{ dataTask.date }} {{ formatHours(dataTask.date) }}</p>-->
-          <!--              </div>-->
-          <!--              <div class="card__block-control-task">-->
-          <!--                <img class="card__trash-icon" src="@/static/icons/fi-rr-trash.svg" alt="icon"-->
-          <!--                     width="25" height="25" @click="removeTask(index)">-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </section>-->
+          <section class="modal-window-wrapper">
+            <div class="full-size-card">
+              <vs-checkbox dark class="card__checkbox"></vs-checkbox>
+              <div class="card__main-data main-data">
+                <header>
+                  <h3 class="card__title title">{{ dataTask.title }}</h3>
+                </header>
+                <p class="card__date date">{{ dataTask.date }} {{ formatHours(dataTask.date) }}</p>
+              </div>
+              <div class="card__block-control-task">
+                <img class="card__trash-icon" src="@/static/icons/fi-rr-trash.svg" alt="icon"
+                     width="25" height="25" @click="removeTask(index)">
+              </div>
+            </div>
+          </section>
         </li>
       </transition-group>
     </ul>
@@ -204,6 +204,126 @@ export default {
         cursor pointer
       }
     }
+  }
+
+  .modal-window-wrapper {
+    position fixed
+    top: 0;
+    left: 0;
+    width 100%
+    height 100%
+    background-color rgba(0, 0, 0, 0.8)
+    z-index 5
+
+    &__window-edit-data {
+      position: absolute
+      top 50%
+      left 50%
+      transform translate(-50%, -50%)
+      width 450px
+      height 200px
+      background-color #272732
+
+      .test {
+        display flex
+        justify-content space-between
+        align-items center
+        flex-wrap wrap
+        position relative
+        margin 0 40px
+        padding 10px
+        width auto
+        height auto
+
+        .modal-window-wrapper__header-modal-window {
+          position relative
+        }
+
+        .header-modal-window {
+          font-family sans-serif
+          color #fff
+        }
+
+        .modal-window-wrapper__edit-title-task-form {
+          width 360px
+          height 40px
+          margin 10px 0
+        }
+
+        .edit-title-task-form {
+          background-color #1E1E1E
+          border-radius 5px
+          border none
+          padding 0 20px
+          color #7CD6B2
+        }
+
+        .modal-window-wrapper__close-modal-window {
+          position absolute
+          top 0
+          right 0
+          cursor pointer
+        }
+
+        .modal-window-wrapper__edit-date-task-form {
+          width 180px
+          height 40px
+        }
+
+        .edit-date-task-form {
+          background-color #1E1E1E
+          border-radius 5px
+          border none
+          padding 0 20px
+          color #7CD6B2
+        }
+
+        .edit-date-task-form:focus {
+          border solid 1.5px #95F9C3
+        }
+
+        .edit-title-task-form:focus {
+          border solid 1.5px #95F9C3
+        }
+
+        .modal-window-wrapper__btn-add-task-modal {
+          position relative
+          width 140px
+          height 40px
+          margin 0
+        }
+
+        .btn-add-task-modal {
+          border solid 1.5px #95F9C3
+          background none
+          border-radius 5px
+          color #fff
+          transition all .5s ease-in-out
+
+          &:hover {
+            background-color #95F9C3
+          }
+
+          &:focus {
+            background-color #95F9C3
+          }
+        }
+      }
+    }
+
+    .window-data {
+      display flex
+      justify-content center
+      align-items center
+      flex-direction column
+      position relative
+      background-color #272732
+      border-radius 10px
+      box-shadow rgba(0, 0, 0, 0.7) 0px 3px 8px 0px
+      margin 0
+      padding 0
+    }
+
   }
 }
 </style>

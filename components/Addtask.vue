@@ -15,7 +15,7 @@
           <input type="number" min="0" class="modal-window-wrapper__add-date-task-form add-date-task-form"
                  placeholder="Время выполнения" v-model="dateTask" @keyup.enter="addTask">
           <button type="submit" class="modal-window-wrapper__btn-add-task-modal btn-add-task-modal"
-                  :disabled="(titleTask < 1 || !dateTask > 0)" @click="addTask">Создать
+                  :disabled="(titleTask.length < 1 || !dateTask > 0)" @click="addTask">Создать
           </button>
         </div>
       </div>

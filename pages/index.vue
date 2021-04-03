@@ -9,8 +9,8 @@
                 elements.name
               }}</a>
             <div class="block-sort__icons">
-              <img :src="upArrow" alt="icon">
-              <img :src="downArrow" alt="icon">
+<!--              <img src="@/assets/icons/up-arrow.svg" alt="icon">-->
+<!--              <img src="@/assets/icons/down-arrow.svg" alt="icon">-->
             </div>
           </li>
         </ul>
@@ -19,148 +19,23 @@
     <section class="loader">
       <div class="loader__line"></div>
     </section>
-    <section class="tasks">
-      <ul>
-        <li class="tasks__task-list" v-for="(dataTask, index) in getTasks" :key="dataTask.id">
-          <transition name="slide-fade">
-            <div class="card" v-show="showCard">
-              <vs-checkbox dark class="card__checkbox"></vs-checkbox>
-              <div class="card__main-data">
-                <header>
-                  <h3 class="card__title title">{{ dataTask.title }}</h3>
-                </header>
-                <p class="card__date date">{{ dataTask.date }} {{ formatHours(dataTask.date) }}</p>
-              </div>
-              <div class="card__block-control-task">
-                <img class="card__edit-icon" src="@/static/icons/fi-rr-edit.svg" alt="icon" width="25" height="25"
-                     @click="showModalWindowEdit = true">
-                <img class="card__trash-icon" src="@/static/icons/fi-rr-trash.svg" alt="icon"
-                     width="25" height="25" @click="removeTask(index)">
-              </div>
-            </div>
-          </transition>
-          <section class="modal-window-wrapper" v-show="showModalWindowEdit">
-            <div class="modal-window-wrapper__window-edit-data window-data">
-              <div class="test">
-                <p class="modal-window-wrapper__header-modal-window header-modal-window">Вам доступно для редактирования
-                  задачи</p>
-                <img class="modal-window-wrapper__close-modal-window" src="@/static/icons/fi-rr-cross.svg" alt="icon"
-                     width="16" height="16" @click="showModalWindowEdit = false">
-                <input type="text" autofocus class="modal-window-wrapper__edit-title-task-form edit-title-task-form"
-                       placeholder="Введите название задачи"
-                       @input="changeTask({id: dataTask.id, toEdit: 'title', value: tempTitle})" v-model="tempTitle">
-                <input type="number" min="0" class="modal-window-wrapper__edit-date-task-form edit-date-task-form"
-                       placeholder="Введите время выполнения"
-                       @input="changeTask({id: dataTask.id, toEdit: 'date', value: tempDate})" v-model="tempDate">
-                <button type="submit" class="modal-window-wrapper__btn-add-task-modal btn-add-task-modal"
-                        @click="editTask()">Редактировать
-                </button>
-              </div>
-            </div>
-          </section>
-          <section class="modal-window-wrapper">
-            <div class="full-size-card">
-              <vs-checkbox dark class="card__checkbox"></vs-checkbox>
-              <div class="card__main-data">
-                <header>
-                  <h3 class="card__title title">{{ dataTask.title }}</h3>
-                </header>
-                <p class="card__date date">{{ dataTask.date }} {{ formatHours(dataTask.date) }}</p>
-              </div>
-              <div class="card__block-control-task">
-                <img class="card__trash-icon" src="@/static/icons/fi-rr-trash.svg" alt="icon"
-                     width="25" height="25" @click="removeTask(index)">
-              </div>
-            </div>
-          </section>
-        </li>
-      </ul>
-    </section>
-    <section class="container__btn-add-task btn-add-task" @click="showModalWindow = true">
-      <img class="container__btn-search btn-search" src="@/static/icons/fi-rr-plus.svg" alt="icon" width="22"
-           height="22">
-    </section>
-    <section class="modal-window-wrapper" v-show="showModalWindow">
-      <div class="modal-window-wrapper__window-add-data window-data">
-        <div class="test">
-          <p class="modal-window-wrapper__header-modal-window header-modal-window">Ваша задача начинается с...</p>
-          <img class="modal-window-wrapper__close-modal-window" src="@/static/icons/fi-rr-cross.svg" alt="icon"
-               width="16" height="16" @click="showModalWindow = false">
-          <input type="text" autofocus class="modal-window-wrapper__add-title-task-form add-title-task-form"
-                 placeholder="Введите название задачи" v-model="titleTask">
-          <input type="number" min="0" class="modal-window-wrapper__add-date-task-form add-date-task-form"
-                 placeholder="Время выполнения" v-model="dateTask" @keyup.enter="addTask">
-          <button type="submit" class="modal-window-wrapper__btn-add-task-modal btn-add-task-modal"
-                  :disabled="(titleTask.length < 1 || !dateTask > 0)" @click="addTask">Создать
-          </button>
-        </div>
-      </div>
-    </section>
+    <Cards />
+    <Addtask />
   </section>
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
 
 export default {
   data: () => ({
-    titleTask: '',
-    dateTask: 0,
     sortElement: [
       {name: "задачам", sorter: "title"},
       {name: "длительности", sorter: "date"},
       {name: "статусу", sorter: "status"},
     ],
-    upArrow: './static/icons/up-arrow.svg',
-    downArrow: './static/icons/down-arrow.svg',
-    showModalWindow: false,
-    showModalWindowEdit: false,
-    tempTitle: '',
-    tempDate: '',
-    showCard: true
-  }),
-  computed: {
-    ...mapGetters(['getTasks'])
-  },
-  methods: {
-    ...mapActions({
-      addNewTask: 'addNewTask',
-      removeTask: 'removeTask',
-      changeTask: 'changeTask'
-    }),
-    removeTask(index) {
-      this.showCard = false
-    },
-    addTask() {
-      if (this.addNewTask) {
-        this.showModalWindow = false
-      }
-      this.addNewTask({
-        title: this.titleTask,
-        date: this.dateTask,
-      })
-      this.titleTask = '';
-      this.dateTask = 0;
-    },
-    formatHours(hours) {
-      let char = String(hours).substr(-1)
-      let str = 'часов'
-      switch (+char) {
-        case 1:
-          str = 'час'
-          break;
-        case 2:
-        case 3:
-        case 4:
-          str = 'часа'
-          break;
-      }
-      return str
-    },
-    editTask() {
-      this.showModalWindowEdit = false
-    },
-  }
+    upArrow: '../assets/icons/up-arrow.svg',
+    downArrow: '../assets/icons/down-arrow.svg',
+  })
 }
 </script>
 
@@ -172,112 +47,6 @@ export default {
   position absolute
   width 100%
   height 100%
-
-  .tasks {
-    display flex
-    justify-content center
-    align-items center
-    width 100%
-    height auto
-    grid-column 2 / 6
-    grid-row 2 / 14
-
-    //.slide-fade-leave-active {
-    //  transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-    //}
-    //
-    //.slide-fade-leave-to {
-    //  transform: translateX(15px);
-    //  visibility: hidden;
-    //}
-
-    .card {
-      display flex
-      align-items center
-      position relative
-      min-width 800px
-      height auto
-      min-height 77px
-      background-color #272732
-      border-radius 10px
-      box-shadow rgba(0, 0, 0, 0.7) 0px 3px 8px 0px
-      margin 20px 0
-
-      .card__checkbox {
-        position relative
-        top 0
-        left 25px
-      }
-
-      &__main-data {
-        display flex
-        justify-content center
-        align-items flex-start
-        flex-direction column
-        flex-wrap wrap
-        position relative
-        left 30px
-        width auto
-        height 100%
-        padding 0 15px
-
-        .card__title {
-          position relative
-          margin 0
-          padding 0
-        }
-
-        .title {
-          font-family sans-serif
-          font-size 20px
-          color #fff
-        }
-
-        .card__date {
-          position relative
-          padding 0
-          margin 0
-        }
-
-        .date {
-          font-family sans-serif
-          color #fff
-          font-size 14px
-        }
-      }
-
-      &__main-data:after {
-        content '';
-        position absolute
-        top 50%
-        left 100%
-        transform translate(-50%, -50%) rotate(90deg)
-        width 44px
-        height 1px
-        background-color #64B5A2
-      }
-
-      &__block-control-task {
-        display flex
-        position absolute
-        right 0
-        justify-content center
-        align-items center
-        width 120px
-        height 100%
-
-        .card__edit-icon {
-          margin 0 10px
-          cursor pointer
-        }
-
-        .card__trash-icon {
-          margin 0 10px
-          cursor pointer
-        }
-      }
-    }
-  }
 
   .loader {
     position absolute

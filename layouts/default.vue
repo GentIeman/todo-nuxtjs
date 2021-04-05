@@ -6,6 +6,10 @@
 </template>
 
 <style>
+input[type=number]::-webkit-inner-spin-button {
+  display: none;
+}
+
 * {
   padding: 0;
   margin: 0;

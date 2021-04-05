@@ -32,6 +32,7 @@ export default {
     titleTask: '',
     dateTask: 0
   }),
+  mixins: ['тестовая функция'],
   methods: {
     ...mapActions({
       addNewTask: 'addNewTask',

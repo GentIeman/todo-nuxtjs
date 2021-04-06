@@ -1,12 +1,14 @@
 <template>
   <section class="modal-window-wrapper" @click.self="closeTask">
     <div class="full-size-card">
-      <vs-checkbox dark class="card__checkbox"></vs-checkbox>
+      <vs-checkbox dark class="card__checkbox"
+                   @change="changeTask({id: data.id, toEdit: 'status', value: !data.status})"
+                   :checked-force="data.status"></vs-checkbox>
       <div class="card__main-data main-data">
         <header>
           <h3 class="card__title title">{{ data.title }}</h3>
         </header>
-        <p class="card__date date">{{ data.date }} {{ formatHours(data.date) }}</p>
+        <p class="card__date date">{{ data.date }} {{ this.formatHours(data.date) }}</p>
       </div>
       <div class="card__block-control-task">
         <img class="card__trash-icon" src="@/static/icons/fi-rr-trash.svg" alt="icon"
@@ -18,17 +20,20 @@
 
 <script>
 import {mapActions} from "vuex";
+import formatHours from '@/mixins/format-hours.js';
 
 export default {
   data: () => ({
     showFullSizeCard: false
   }),
   props: ["data"],
+  mixins: [formatHours],
   methods: {
     ...mapActions({
       removeTask: 'removeTask',
+      changeTask: 'changeTask'
     }),
-    closeTask(){
+    closeTask() {
       this.$emit('close');
     },
     formatHours(hours) {
@@ -64,6 +69,7 @@ export default {
   z-index 5
   cursor pointer
 }
+
 .full-size-card {
   display flex
   align-items center

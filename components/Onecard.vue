@@ -8,7 +8,7 @@
         <header>
           <h3 class="card__title title">{{ data.title }}</h3>
         </header>
-        <p class="card__date date">{{ data.date }} {{ formatHours(data.date) }}</p>
+        <p class="card__date date">{{ data.date }} {{ this.formatHours(data.date) }}</p>
       </div>
       <div class="card__block-control-task">
         <img class="card__edit-icon" src="@/static/icons/fi-rr-edit.svg" alt="icon" width="25" height="25"
@@ -25,10 +25,12 @@
 
 <script>
 import {mapActions} from "vuex";
+import formatHours from '@/mixins/format-hours.js';
 
 export default {
   name: "Onecard",
   props: ['data'],
+  mixins: [formatHours],
   data: () => ({
     showModalWindowEdit: false,
     showFullSizeCard: false
@@ -37,22 +39,7 @@ export default {
     ...mapActions({
       removeTask: 'removeTask',
       changeTask: 'changeTask'
-    }),
-    formatHours(hours) {
-      let char = String(hours).substr(-1)
-      let str = 'часов'
-      switch (+char) {
-        case 1:
-          str = 'час'
-          break;
-        case 2:
-        case 3:
-        case 4:
-          str = 'часа'
-          break;
-      }
-      return str
-    },
+    })
   }
 }
 </script>

@@ -6,7 +6,7 @@
           редактирования
           задачи</p>
         <img class="modal-window-wrapper__close-modal-window" src="@/static/icons/fi-rr-cross.svg" alt="icon"
-             width="16" height="16">
+             width="16" height="16" @click="editTask()">
         <input type="text" class="modal-window-wrapper__edit-title-task-form edit-title-task-form"
                placeholder="Введите название задачи" v-model="tempTitle">
         <input type="number" min="0" class="modal-window-wrapper__edit-date-task-form edit-date-task-form"

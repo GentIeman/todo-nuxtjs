@@ -1,16 +1,16 @@
 <template>
-  <section class="modal-window-wrapper" v-show="showFullSizeCard">
+  <section class="modal-window-wrapper" @click.self="closeTask">
     <div class="full-size-card">
       <vs-checkbox dark class="card__checkbox"></vs-checkbox>
       <div class="card__main-data main-data">
         <header>
-          <h3 class="card__title title">{{ dataTask.title }}</h3>
+          <h3 class="card__title title">{{ data.title }}</h3>
         </header>
-        <p class="card__date date">{{ dataTask.date }} {{ formatHours(dataTask.date) }}</p>
+        <p class="card__date date">{{ data.date }} {{ formatHours(data.date) }}</p>
       </div>
       <div class="card__block-control-task">
         <img class="card__trash-icon" src="@/static/icons/fi-rr-trash.svg" alt="icon"
-             width="25" height="25" @click="removeTask(dataTask.id)">
+             width="25" height="25" @click="removeTask(data.id)">
       </div>
     </div>
   </section>
@@ -23,7 +23,30 @@ export default {
   data: () => ({
     showFullSizeCard: false
   }),
-  props: ["dataTask"],
+  props: ["data"],
+  methods: {
+    ...mapActions({
+      removeTask: 'removeTask',
+    }),
+    closeTask(){
+      this.$emit('close');
+    },
+    formatHours(hours) {
+      let char = String(hours).substr(-1)
+      let str = 'часов'
+      switch (+char) {
+        case 1:
+          str = 'час'
+          break;
+        case 2:
+        case 3:
+        case 4:
+          str = 'часа'
+          break;
+      }
+      return str
+    }
+  }
 }
 </script>
 
@@ -39,6 +62,7 @@ export default {
   height 100%
   background-color rgba(0, 0, 0, 0.8)
   z-index 5
+  cursor pointer
 }
 .full-size-card {
   display flex

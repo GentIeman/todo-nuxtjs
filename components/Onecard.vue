@@ -1,9 +1,9 @@
 <template>
   <section>
-    <div class="card" @click="tempAlert">
+    <div class="card" @click.self="showFullSizeCard = true">
       <vs-checkbox dark class="card__checkbox"
                    @change="changeTask({id: data.id, toEdit: 'status', value: !data.status})"
-                   :checked-force="data.status" @click.stop></vs-checkbox>
+                   :checked-force="data.status"></vs-checkbox>
       <div class="card__main-data main-data">
         <header>
           <h3 class="card__title title">{{ data.title }}</h3>
@@ -19,6 +19,7 @@
     </div>
     <Edittask :id="data.id" v-if="showModalWindowEdit"
               @edited='showModalWindowEdit = false'/>
+    <Fullsizecard :data="data" v-if="showFullSizeCard" @close="showFullSizeCard = false"/>
   </section>
 </template>
 
@@ -29,16 +30,14 @@ export default {
   name: "Onecard",
   props: ['data'],
   data: () => ({
-    showModalWindowEdit: false
+    showModalWindowEdit: false,
+    showFullSizeCard: false
   }),
   methods: {
     ...mapActions({
       removeTask: 'removeTask',
       changeTask: 'changeTask'
     }),
-    tempAlert(){
-      alert('!!!')
-    },
     formatHours(hours) {
       let char = String(hours).substr(-1)
       let str = 'часов'
@@ -70,6 +69,7 @@ export default {
   border-radius 10px
   box-shadow rgba(0, 0, 0, 0.7) 0px 3px 8px 0px
   margin 20px 0
+  cursor pointer
 
   .card__checkbox {
     position relative

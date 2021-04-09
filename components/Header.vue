@@ -1,6 +1,7 @@
 <template>
   <header class="header">
-    <img class="header__btn-search btn-search" src="@/static/icons/fi-rr-search.svg" alt="icon" width="18" height="18">
+    <img class="header__btn-search btn-search" src="@/assets/icons/fi-rr-search.svg" alt="icon" width="18" height="18">
+<!--    <Search />-->
   </header>
 </template>
 

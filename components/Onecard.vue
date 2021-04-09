@@ -12,7 +12,7 @@
       </div>
       <div class="card__block-control-task">
         <img class="card__edit-icon" src="@/static/icons/fi-rr-edit.svg" alt="icon" width="25" height="25"
-             @click="showModalWindowEdit = true" >
+             @click="showModalWindowEdit = true">
         <img class="card__trash-icon" src="@/static/icons/fi-rr-trash.svg" alt="icon"
              width="25" height="25" @click="removeTask(data.id)">
       </div>
@@ -57,6 +57,11 @@ export default {
   box-shadow rgba(0, 0, 0, 0.7) 0px 3px 8px 0px
   margin 20px 0
   cursor pointer
+  transition all .5s ease-in
+
+  &:hover {
+      background-color #2c3e50
+  }
 
   .card__checkbox {
     position relative

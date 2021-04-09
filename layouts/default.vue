@@ -28,3 +28,5 @@ input[type=number]::-webkit-inner-spin-button {
    list-style: none;
  }
 </style>
+<script>
+</script>

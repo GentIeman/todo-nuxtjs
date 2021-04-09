@@ -3,8 +3,18 @@ export const state = () => ({
 });
 
 export const getters = {
-  getTasks(state){
+  getTasks(state) {
     return state.tasks
+  },
+  getTaskById: state => id => {
+    return state.tasks.find(crane => crane.id === id);
+  },
+  getSearching: state => search => {
+    if (search.length === 0) return []
+    let result = state.tasks.filter(function (task) {
+      return task.title.toLowerCase().indexOf(search.toLowerCase()) > -1;
+    })
+    return result
   }
 };
 

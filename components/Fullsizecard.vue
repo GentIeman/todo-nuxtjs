@@ -1,17 +1,17 @@
 <template>
   <section class="modal-window-wrapper" @click.self="closeTask">
-    <div class="full-size-card">
-      <vs-checkbox dark class="card__checkbox"
+    <div class="full-size-card" :class="{'slide-up': isSlide}">
+      <vs-checkbox dark class="full-size-card__checkbox"
                    @change="changeTask({id: data.id, toEdit: 'status', value: !data.status})"
                    :checked-force="data.status"></vs-checkbox>
-      <div class="card__main-data main-data">
+      <div class="full-size-card__main-data main-data">
         <header>
-          <h3 class="card__title title">{{ data.title }}</h3>
+          <h3 class="full-size-card__title title">{{ data.title }}</h3>
         </header>
-        <p class="card__date date">{{ data.date }} {{ this.formatHours(data.date) }}</p>
+        <p class="full-size-card__date date">{{ data.date }} {{ this.formatHours(data.date) }}</p>
       </div>
-      <div class="card__block-control-task">
-        <img class="card__trash-icon" src="@/static/icons/fi-rr-trash.svg" alt="icon"
+      <div class="full-size-card__block-control-task">
+        <img class="full-size-card__trash-icon" src="@/static/icons/fi-rr-trash.svg" alt="icon"
              width="25" height="25" @click="removeTask(data.id)">
       </div>
     </div>
@@ -24,7 +24,8 @@ import formatHours from '@/mixins/format-hours.js';
 
 export default {
   data: () => ({
-    showFullSizeCard: false
+    showFullSizeCard: false,
+    isSlide: false
   }),
   props: ["data"],
   mixins: [formatHours],
@@ -34,22 +35,10 @@ export default {
       changeTask: 'changeTask'
     }),
     closeTask() {
-      this.$emit('close');
-    },
-    formatHours(hours) {
-      let char = String(hours).substr(-1)
-      let str = 'часов'
-      switch (+char) {
-        case 1:
-          str = 'час'
-          break;
-        case 2:
-        case 3:
-        case 4:
-          str = 'часа'
-          break;
-      }
-      return str
+      this.isSlide = true;
+      setInterval(() => {
+        this.$emit('close');
+      }, 750)
     }
   }
 }
@@ -74,6 +63,7 @@ export default {
   display flex
   align-items center
   position relative
+  top -100%
   width 800px
   height auto
   min-height 77px
@@ -81,14 +71,27 @@ export default {
   border-radius 10px
   box-shadow rgba(0, 0, 0, 0.7) 0px 3px 8px 0px
   margin 20px 0
+  animation full-size-animate .8s forwards
 
-  .card__checkbox {
+  @keyframes full-size-animate {
+    0% {
+      top -100%
+    }
+    75% {
+      top 50px
+    }
+    100% {
+      top 0
+    }
+  }
+
+  &__checkbox {
     position relative
     top 0
     left 25px
   }
 
-  .card__main-data {
+  &__main-data {
     display flex
     justify-content center
     align-items flex-start
@@ -112,7 +115,7 @@ export default {
       color #fff
     }
 
-    .card__date {
+    &__date {
       position relative
       padding 0
       margin 0
@@ -125,7 +128,7 @@ export default {
     }
   }
 
-  .card__main-data:after {
+  &__main-data:after {
     content '';
     position absolute
     top 50%
@@ -136,7 +139,7 @@ export default {
     background-color #64B5A2
   }
 
-  .card__block-control-task {
+  &__block-control-task {
     display flex
     position absolute
     right 0
@@ -145,14 +148,30 @@ export default {
     width 120px
     height 100%
 
-    .card__edit-icon {
+    &__edit-icon {
       margin 0 10px
       cursor pointer
     }
 
-    .card__trash-icon {
+    &__trash-icon {
       margin 0 10px
       cursor pointer
+    }
+  }
+}
+
+.slide-up {
+  animation: slide-up .8s ease-in
+
+  @keyframes slide-up {
+    0% {
+      top 0
+    }
+    75% {
+      top 50px
+    }
+    100% {
+      top -100%
     }
   }
 }

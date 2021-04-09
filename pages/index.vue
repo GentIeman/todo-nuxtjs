@@ -40,6 +40,7 @@ export default {
 </script>
 
 <style lang="stylus">
+
 .container {
   display grid
   grid-template-columns repeat(5, 1fr)
@@ -53,8 +54,8 @@ export default {
     top 55px
     width 100%
     height 15px
-    background-color red
     grid-column 2 / 6
+    background linear-gradient(-45deg, #95F9C3, #0B3866)
   }
 
   &__btn-add-task {

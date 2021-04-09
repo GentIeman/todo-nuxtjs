@@ -10,12 +10,12 @@
           <p class="modal-window-wrapper__header-modal-window header-modal-window">Ваша задача начинается с...</p>
           <img class="modal-window-wrapper__close-modal-window" src="@/static/icons/fi-rr-cross.svg" alt="icon"
                width="16" height="16" @click="showModalWindow = false">
-          <input type="text" autofocus class="modal-window-wrapper__add-title-task-form add-title-task-form"
+          <input type="text" autofocus spellcheck="true" class="modal-window-wrapper__add-title-task-form add-title-task-form"
                  placeholder="Введите название задачи" v-model="titleTask">
-          <input type="number" min="0" class="modal-window-wrapper__add-date-task-form add-date-task-form"
+          <input type="number" class="modal-window-wrapper__add-date-task-form add-date-task-form"
                  placeholder="Время выполнения" v-model="dateTask" @keyup.enter="addTask">
           <button type="submit" class="modal-window-wrapper__btn-add-task-modal btn-add-task-modal"
-                  :disabled="(titleTask.length < 1 || !dateTask > 0)" @click="addTask">Создать
+                  :disabled="(titleTask.length < 1 || !(dateTask > 0))" @click="addTask">Создать
           </button>
         </div>
       </div>
@@ -48,11 +48,25 @@ export default {
       this.titleTask = '';
       this.dateTask = 0;
     },
+  },
+  watch: {
+    dateTask(value) {
+      value = +value;
+      this.dateTask += value;
+      (value > 0 || value === '') ? this.dateTask = value : this.dateTask = value *- 1;
+    }
   }
 }
 </script>
 
 <style scoped lang="stylus">
+
+div {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 .modal-window-wrapper {
   position fixed
   top: 0;
@@ -264,6 +278,5 @@ export default {
     margin 0
     padding 0
   }
-
 }
 </style>

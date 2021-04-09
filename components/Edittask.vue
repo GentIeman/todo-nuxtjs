@@ -46,6 +46,11 @@ export default {
       this.changeTask({id: this.id, toEdit: 'title', value: this.tempTitle})
       this.$emit('edited')
     },
+  },
+  tempDate(value) {
+    value = +value;
+    this.dateTask += value;
+    (value > 0 || value === '') ? this.dateTask = value : this.dateTask = value *- 1;
   }
 }
 </script>

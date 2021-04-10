@@ -58,43 +58,6 @@ export default {
     background linear-gradient(-45deg, #95F9C3, #0B3866)
   }
 
-  &__btn-add-task {
-    display flex
-    justify-content center
-    align-items center
-    position absolute
-    right 20px
-    bottom 20px
-    width 44px
-    height 44px
-    border-radius 10px
-    z-index 1
-  }
-
-  .btn-add-task {
-    background linear-gradient(30deg, #95F9C3, #0B3866)
-    cursor pointer
-    transition all .5s ease-in-out
-
-    &:before {
-      content ''
-      position absolute
-      top 0
-      left 0
-      background linear-gradient(30deg, #95F9C3, #0B3866)
-      width 100%
-      height 100%
-      border-radius 10px
-      opacity 0
-      z-index: -1;
-    }
-
-    &:hover:before {
-      filter blur(5px)
-      opacity 1
-    }
-  }
-
   .sidebar {
     position relative
     top 0

@@ -1,9 +1,9 @@
 <template>
   <section class="search-container">
-    <form name="searchForm">
+    <form name="search">
       <input type="search" placeholder="Поиск..." > <!-- v-model="someSearchTempVar" -->
     </form>
-    <div class="block__elementSearching">
+    <div class="search-container__elementSearching">
       <ul>
         <li v-for="searchElement in getSearchResult(someSearchTempVar)" :key="searchElement.id"> <!-- (someSearchTempVar) -->
           <p>{{ searchElement.title }}</p>

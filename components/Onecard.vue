@@ -11,9 +11,9 @@
         <p class="card__date date">{{ data.date }} {{ this.formatHours(data.date) }}</p>
       </div>
       <div class="card__block-control-task">
-        <img class="card__edit-icon" src="@/static/icons/fi-rr-edit.svg" alt="icon" width="25" height="25"
+        <img class="card__edit-icon" src="@/assets/icons/fi-rr-edit.svg" alt="icon" width="25" height="25"
              @click="showModalWindowEdit = true">
-        <img class="card__trash-icon" src="@/static/icons/fi-rr-trash.svg" alt="icon"
+        <img class="card__trash-icon" src="@/assets/icons/fi-rr-trash.svg" alt="icon"
              width="25" height="25" @click="removeTask(data.id)">
       </div>
     </div>

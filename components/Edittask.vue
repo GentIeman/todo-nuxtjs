@@ -5,8 +5,8 @@
         <p class="modal-window-wrapper__header-modal-window header-modal-window">Вам доступно для
           редактирования
           задачи</p>
-        <img class="modal-window-wrapper__close-modal-window" src="@/static/icons/fi-rr-cross.svg" alt="icon"
-             width="16" height="16" @click="editTask()">
+        <img class="modal-window-wrapper__close-modal-window" src="@/assets/icons/fi-rr-cross.svg" alt="icon"
+             width="16" height="16" @click="closeModalWindowEdit()">
         <input type="text" class="modal-window-wrapper__edit-title-task-form edit-title-task-form"
                placeholder="Введите название задачи" v-model="tempTitle">
         <input type="number" min="0" class="modal-window-wrapper__edit-date-task-form edit-date-task-form"
@@ -14,7 +14,6 @@
         <button type="submit" class="modal-window-wrapper__btn-add-task-modal btn-add-task-modal"
                 @click="editTask()" :disabled="(tempTitle.length < 1 || !(tempDate > 0))">Редактировать
         </button>
-
       </div>
     </div>
   </section>
@@ -41,16 +40,21 @@ export default {
     ...mapActions({
       changeTask: 'changeTask',
     }),
+    closeModalWindowEdit(){
+      this.$emit('edited')
+    },
     editTask() {
       this.changeTask({id: this.id, toEdit: 'date', value: this.tempDate})
       this.changeTask({id: this.id, toEdit: 'title', value: this.tempTitle})
       this.$emit('edited')
     },
   },
-  tempDate(value) {
-    value = +value;
-    this.dateTask += value;
-    (value > 0 || value === '') ? this.dateTask = value : this.dateTask = value *- 1;
+  watch: {
+    tempDate(value) {
+      value = +value;
+      this.tempDate += value;
+      (value > 0 || value === '') ? this.tempDate = value : this.tempDate = value *- 1;
+    }
   }
 }
 </script>

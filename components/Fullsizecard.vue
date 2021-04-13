@@ -8,7 +8,7 @@
         <header>
           <h3 class="full-size-card__title title">{{ data.title }}</h3>
         </header>
-        <p class="full-size-card__date date">{{ data.date }} {{ this.formatHours(data.date) }}</p>
+        <p class="full-size-card__date date">{{ data.date }} {{ formatHours(data.date) }}</p>
       </div>
       <div class="full-size-card__block-control-task">
         <img class="full-size-card__trash-icon" src="@/assets/icons/fi-rr-trash.svg" alt="icon"
@@ -147,11 +147,6 @@ export default {
     align-items center
     width 120px
     height 100%
-
-    &__edit-icon {
-      margin 0 10px
-      cursor pointer
-    }
 
     &__trash-icon {
       margin 0 10px

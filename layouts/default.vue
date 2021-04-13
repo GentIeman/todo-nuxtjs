@@ -6,6 +6,9 @@
 </template>
 
 <style>
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
 input[type=number]::-webkit-inner-spin-button {
   display: none;
 }

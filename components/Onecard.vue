@@ -8,7 +8,7 @@
         <header>
           <h3 class="card__title title">{{ data.title }}</h3>
         </header>
-        <p class="card__date date">{{ data.date }} {{ this.formatHours(data.date) }}</p>
+        <p class="card__date date">{{ data.date }} {{ formatHours(data.date) }}</p>
       </div>
       <div class="card__block-control-task">
         <img class="card__edit-icon" src="@/assets/icons/fi-rr-edit.svg" alt="icon" width="25" height="25"
@@ -36,10 +36,7 @@ export default {
     showFullSizeCard: false
   }),
   methods: {
-    ...mapActions({
-      removeTask: 'removeTask',
-      changeTask: 'changeTask'
-    })
+    ...mapActions(['changeTask', 'removeTask']),
   }
 }
 </script>

@@ -1,12 +1,19 @@
 <template>
-  <header class="header">
-    <img class="header__btn-search btn-search" src="@/assets/icons/fi-rr-search.svg" alt="icon" width="18" height="18">
-<!--    <Search />-->
-  </header>
+  <div>
+    <header class="header">
+      <img @click="showSearchModalWindow = true" class="header__btn-search btn-search" src="@/assets/icons/fi-rr-search.svg" alt="icon" width="18" height="18">
+    </header>
+    <Search v-show="showSearchModalWindow" @close="showSearchModalWindow = false"/>
+  </div>
 </template>
 
 <script>
+import Search from "./Search";
 export default {
+  components: {Search},
+  data: () => ({
+    showSearchModalWindow: false
+  }),
 }
 </script>
 

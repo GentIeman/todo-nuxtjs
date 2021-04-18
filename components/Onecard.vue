@@ -1,21 +1,19 @@
 <template>
-  <section>
-    <div class="card" @click.self="showFullSizeCard = true">
-      <vs-checkbox dark class="card__checkbox"
-                   @change="changeTask({id: data.id, toEdit: 'status', value: !data.status})"
-                   :checked-force="data.status"></vs-checkbox>
-      <div class="card__main-data main-data">
-        <header>
-          <h3 class="card__title title">{{ data.title }}</h3>
-        </header>
-        <p class="card__date date">{{ data.date }} {{ formatHours(data.date) }}</p>
-      </div>
-      <div class="card__block-control-task">
-        <img class="card__edit-icon" src="@/assets/icons/fi-rr-edit.svg" alt="icon" width="25" height="25"
-             @click="showModalWindowEdit = true">
-        <img class="card__trash-icon" src="@/assets/icons/fi-rr-trash.svg" alt="icon"
-             width="25" height="25" @click="removeTask(data.id)">
-      </div>
+  <section class="card" @click.self="showFullSizeCard = true">
+    <vs-checkbox dark class="card__checkbox"
+                 @change="changeTask({id: data.id, toEdit: 'status', value: !data.status})"
+                 :checked-force="data.status"></vs-checkbox>
+    <div class="card__main-data main-data">
+      <header>
+        <h3 class="card__title title">{{ data.title }}</h3>
+      </header>
+      <p class="card__date date">{{ data.date }} {{ formatHours(data.date) }}</p>
+    </div>
+    <div class="card__block-control-task">
+      <img class="card__edit-icon" src="@/assets/icons/fi-rr-edit.svg" alt="icon" width="25" height="25"
+           @click="showModalWindowEdit = true">
+      <img class="card__trash-icon" src="@/assets/icons/fi-rr-trash.svg" alt="icon"
+           width="25" height="25" @click="removeTask(data.id)">
     </div>
     <Edittask :id="data.id" v-if="showModalWindowEdit"
               @edited='showModalWindowEdit = false'/>
@@ -44,7 +42,6 @@ export default {
 <style scoped lang="stylus">
 .card {
   display flex
-  align-items center
   position relative
   min-width 800px
   height auto
@@ -57,10 +54,10 @@ export default {
   transition all .5s ease-in
 
   &:hover {
-      background-color #2c3e50
+    background-color #2c3e50
   }
 
-  .card__checkbox {
+  &__checkbox {
     position relative
     top 0
     left 25px
@@ -69,7 +66,7 @@ export default {
   &__main-data {
     display flex
     justify-content center
-    align-items flex-start
+    align-self center
     flex-direction column
     flex-wrap wrap
     position relative

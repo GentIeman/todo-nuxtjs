@@ -1,5 +1,6 @@
 <template>
   <section class="container">
+    <Header/>
     <aside class="sidebar">
       <div class="sidebar__wrapper">
         <p class="sidebar__header header">Сортировка</p>
@@ -9,22 +10,21 @@
                 elements.name
               }}</a>
             <div class="block-sort__icons">
-<!--              <img src="@/assets/icons/up-arrow.svg" alt="icon">-->
-<!--              <img src="@/assets/icons/down-arrow.svg" alt="icon">-->
+              <!--              <img src="@/assets/icons/up-arrow.svg" alt="icon">-->
+              <!--              <img src="@/assets/icons/down-arrow.svg" alt="icon">-->
             </div>
           </li>
         </ul>
       </div>
     </aside>
-    <section class="loader">
-      <div class="loader__line"></div>
-    </section>
-    <Cards />
-    <Addtask />
+    <Progress-bar :percentage="calculatedPercentage"/>
+    <Cards/>
+    <Addtask/>
   </section>
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   data: () => ({
@@ -35,35 +35,42 @@ export default {
     ],
     upArrow: '../assets/icons/up-arrow.svg',
     downArrow: '../assets/icons/down-arrow.svg',
-  })
+  }),
+  computed: {
+    ...mapGetters(['getTasks']),
+    currentHours() {
+      let total = 0;
+      let done = 0;
+      this.getTasks.forEach(function (element) {
+        total += Number(element.date)
+        if (element.status === true) {
+          done += Number(element.date)
+        }
+      })
+      return {total: total, done: done}
+    },
+    calculatedPercentage() {
+      return (this.currentHours.total / this.currentHours.done) * 100
+    }
+  },
 }
 </script>
 
 <style lang="stylus">
-
 .container {
   display grid
   grid-template-columns repeat(5, 1fr)
-  grid-template-rows repeat(13, 4fr)
+  grid-template-rows repeat(5, minmax(auto-fill, 4fr))
   position absolute
   width 100%
   height 100%
-
-  .loader {
-    position absolute
-    top 55px
-    width 100%
-    height 15px
-    grid-column 2 / 6
-    background linear-gradient(-45deg, #95F9C3, #0B3866)
-  }
 
   .sidebar {
     position relative
     top 0
     left 0
-    grid-column 1 / 2
-    grid-row 1 / 14
+    grid-column 1 / 1
+    grid-row 1 / 4
     height 100%
     background-color #21212b
 
@@ -72,50 +79,50 @@ export default {
       top 123px
       left 0
       width 100%
-    }
+      height auto
 
-    &__header {
-      position absolute
-      top 0
-      left 20px
-    }
-
-    .header {
-      position relative
-      margin 0
-      font-family sans-serif
-      font-size 24px
-      color #fff
-    }
-
-    .block-sort {
-      margin 0
-      padding 0
-
-      &__elements-list {
-        display flex
-        align-items center
+      .sidebar__header {
         position relative
-        top 5px
-        left 0
-        padding: 15px 60px;
-
-        &__elements-title {
-          position relative
-          margin 0
-        }
-
-        .elements-title {
-          text-decoration none
-          font-family sans-serif
-          color #7f8c8d
-          cursor pointer
-          transition all .5s ease
-        }
+        top 0
+        left 20px
       }
 
-      &__elements-title_active:hover {
-        color: #535c68
+      .header {
+        font-family sans-serif
+        font-size 24px
+        color #fff
+      }
+
+      .block-sort {
+        position relative
+        margin 0
+        padding 0
+
+        &__elements-list {
+          display flex
+          align-items center
+          position relative
+          top 0
+          left 0
+          padding: 15px 60px;
+
+          &__elements-title {
+            position relative
+            margin 0
+          }
+
+          .elements-title {
+            text-decoration none
+            font-family sans-serif
+            color #7f8c8d
+            cursor pointer
+            transition all .5s ease
+          }
+        }
+
+        &__elements-title_active:hover {
+          color: #535c68
+        }
       }
     }
   }

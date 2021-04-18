@@ -65,11 +65,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-
 div {
-  display flex
-  justify-content center
-  align-items center
   position absolute
   bottom 0
   right 0

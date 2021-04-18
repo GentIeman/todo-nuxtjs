@@ -1,34 +1,34 @@
 <template>
   <div>
     <Nuxt />
-    <Header />
   </div>
 </template>
 
-<style>
+<style lang="stylus">
+
 input[type="search"]::-webkit-search-cancel-button {
-  display: none;
+  display none
 }
 input[type=number]::-webkit-inner-spin-button {
-  display: none;
+  display none
 }
 
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+  padding 0
+  margin 0
+  box-sizing border-box
 }
  body {
-   background-color: #101015;
+   background-color #101015
  }
 
  ul {
-   margin: 0;
-   padding: 0;
+   margin 0
+   padding 0
  }
 
  ul li {
-   list-style: none;
+   list-style none
  }
 </style>
 <script>

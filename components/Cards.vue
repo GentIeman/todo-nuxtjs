@@ -21,12 +21,13 @@ export default {
 <style scoped lang="stylus">
 .tasks {
   display flex
+  position absolute
   justify-content center
   align-items center
   width 100%
   height auto
   grid-column 2 / 6
-  grid-row 2 / 14
+  grid-row 2 / 6
 
   .slide-fade-leave-active {
     transition all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0)

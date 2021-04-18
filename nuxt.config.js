@@ -1,3 +1,5 @@
+const resolve = require('path').resolve
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -17,6 +19,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    {src: '@/assets/stylus/app.styl', lang: 'styl'},
     'vuesax/dist/vuesax.css',
   ],
 
@@ -34,6 +37,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    ['nuxt-stylus-resources-loader', resolve(__dirname, 'assets/stylus/app.styl')]
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

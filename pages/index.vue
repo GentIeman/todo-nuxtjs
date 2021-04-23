@@ -17,14 +17,14 @@
         </ul>
       </div>
     </aside>
-    <Progress-bar :percentage="calculatedPercentage"/>
+    <Progress-bar :percentage="calculatedPercentage" v-if="currentHours.total > 0"/>
     <Cards/>
     <Addtask/>
   </section>
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import {mapGetters} from 'vuex'
 
 export default {
   data: () => ({
@@ -50,7 +50,7 @@ export default {
       return {total: total, done: done}
     },
     calculatedPercentage() {
-      return (this.currentHours.total / this.currentHours.done) * 100
+      return (this.currentHours.done / this.currentHours.total) * 100
     }
   },
 }

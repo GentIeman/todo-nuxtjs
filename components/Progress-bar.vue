@@ -1,33 +1,29 @@
 <template>
-  <section class="loader">
-    <div class="loader__line">
+  <div class="progress">
+    <div class="progress__line" :style="{width: percentage + '%'}" style="color: red">
     </div>
-    <p style="color: #fff">Часов выполнено: {{ percentage.done }}/{{ percentage.total }}</p>
-  </section>
+  </div>
 </template>
 
 <script>
 export default {
   props: ['percentage'],
-  data: () => ({}),
+  data: () => ({})
 }
 </script>
 
 <style scoped lang="stylus">
-
-.loader {
+.progress {
   position absolute
   top 55px
-  width 100%
   height 15px
+  width 100%
   grid-column 2 / 6
-  border solid 1px red
 
   &__line {
     position relative
-    width 50px
     height 100%
-    background-color red
+    background linear-gradient(30deg, #95F9C3, #0B3866)
   }
 }
 </style>

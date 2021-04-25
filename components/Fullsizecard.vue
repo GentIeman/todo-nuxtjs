@@ -145,11 +145,11 @@ export default {
     right 0
     justify-content center
     align-items center
-    width 120px
+    width 80px
     height 100%
 
     &__trash-icon {
-      margin 0 10px
+      margin 0
       cursor pointer
     }
   }

@@ -17,7 +17,7 @@
         </ul>
       </div>
     </aside>
-    <Progress-bar :percentage="calculatedPercentage" v-if="currentHours.total > 0"/>
+    <Progress-bar :percentage="calculatedPercentage" v-if="currentHours.total > 0" :hours="currentHours"/>
     <Cards/>
     <Addtask/>
   </section>

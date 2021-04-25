@@ -22,12 +22,13 @@ export default {
 .tasks {
   display flex
   position absolute
+  top 120px
   justify-content center
   align-items center
   width 100%
   height auto
   grid-column 2 / 6
-  grid-row 2 / 6
+  grid-row 1 / 6
 
   .slide-fade-leave-active {
     transition all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0)

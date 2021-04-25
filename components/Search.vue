@@ -104,13 +104,13 @@ export default {
           background-color #272732
           cursor pointer
           transition all .5s ease-in
-          border-bottom solid 1px #64B5A2
+          border-bottom solid 1.4px #252525
 
           &:hover {
             background-color #2c3e50
           }
 
-          .card__checkbox {
+          &__checkbox {
             position relative
             top 0
             left 25px
@@ -170,7 +170,7 @@ export default {
             right 0
             justify-content center
             align-items center
-            width 120px
+            width 80px
             height 100%
 
             .card__trash-icon {

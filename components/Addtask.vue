@@ -7,7 +7,7 @@
     </section>
     <section class="modal-window-wrapper" v-show="showModalWindow" @keyup.esc="showModalWindow = false">
       <div class="modal-window-wrapper__window-add-data window-data">
-        <div class="test">
+        <div class="modal-window-wrapper__content">
           <p class="modal-window-wrapper__header-modal-window header-modal-window">Ваша задача начинается с...</p>
           <img class="modal-window-wrapper__close-modal-window" src="@/assets/icons/fi-rr-cross.svg" alt="icon"
                width="16" height="16" @click="showModalWindow = false">
@@ -133,7 +133,7 @@ div {
       width 450px
       height 200px
 
-      .test {
+      .modal-window-wrapper__content {
         display flex
         justify-content space-between
         align-items center

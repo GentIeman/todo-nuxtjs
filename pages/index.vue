@@ -10,8 +10,10 @@
                 elements.name
               }}</a>
             <div class="block-sort__icons">
-              <!--              <img src="@/assets/icons/up-arrow.svg" alt="icon">-->
-              <!--              <img src="@/assets/icons/down-arrow.svg" alt="icon">-->
+              <img class="block-sort__arrow icon-up" src="@/assets/icons/up-arrow.svg" alt="icon" width="20px"
+                   height="20px" @click="setSortParams(elements.sorter, 'ASC')">
+              <img class="block-sort__arrow icon-down" src="@/assets/icons/down-arrow.svg" alt="icon" width="20px"
+                   height="20px" @click="setSortParams(elements.sorter, 'DESC')">
             </div>
           </li>
         </ul>
@@ -53,6 +55,12 @@ export default {
       return (this.currentHours.done / this.currentHours.total) * 100
     }
   },
+  methods: {
+    setSortParams(key, dir) {
+      this.sortDirection = dir
+      this.sortKey = key
+    }
+  }
 }
 </script>
 
@@ -104,11 +112,19 @@ export default {
           position relative
           top 0
           left 0
-          padding: 15px 60px;
+          padding 15px 40px
 
-          &__elements-title {
+          .block-sort__icons {
             position relative
-            margin 0
+            padding: 0 10px;
+
+            .block-sort__arrow {
+              cursor pointer
+            }
+          }
+
+          .block-sort__elements-title {
+            position relative
           }
 
           .elements-title {

@@ -12,9 +12,42 @@
 import {mapGetters, mapActions} from 'vuex'
 
 export default {
+  props: ['sortDirection', 'sortKey'],
   computed: {
-    ...mapGetters(['getTasks'])
+    ...mapGetters(['getTasks']),
+  sortedArray() {
+      return this.sortTasks(this.sortKey, this.sortDirection)
   }
+  },
+  methods : {
+    sortTasks(sortBy, direction) {
+      function dynamicSort(property, dir) {
+        let sortOrder = 1
+        if (dir.toUpperCase() === 'DESC') {
+          sortOrder = -1;
+        }
+        return function (a, b) {
+          let result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+          return result * sortOrder;
+        }
+      }
+      let tempObj = JSON.parse(JSON.stringify(this.getTasks))
+      return tempObj.sort(dynamicSort(sortBy, direction)); // this.$store.getters
+    }
+  }
+    // sortTasks(sortBy, dir) {
+    //   function dynaSort
+    //   let sortOrder = 1
+    //   if (dir.toUpperCase() === 'DESC') {
+    //     sortOrder = -1
+    //   }
+    //   return function (a, b) {
+    //     let result = (a[sortBy] < b[sortBy]) ? -1 : (a[sortBy] > b[sortBy]) ? 1 : 0
+    //     return sortOrder * result
+    //   }
+    // }
+    //   return this.getTasks.sort(dynaSort)
+
 }
 </script>
 

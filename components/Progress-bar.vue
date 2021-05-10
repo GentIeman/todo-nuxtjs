@@ -1,9 +1,9 @@
 <template>
-  <div class="progress">
-    <div class="progress__line" :style="{width: percentage + '%'}" style="color: red" @mouseover="showTooltipValue = true" @mouseleave="showTooltipValue = false">
+  <div class="progress"  @mouseover="showTooltipValue = true" @mouseleave="showTooltipValue = false">
+    <div class="progress__line" :style="{width: percentage + '%'}" style="color: red">
     </div>
     <div class="tooltip" v-if="showTooltipValue">
-      <span class="tooltip__text">Часов выполнено: {{ hours.done}} / {{ hours.total }}</span>
+      <span class="tooltip__text">Часов выполнено: {{ hours.done }} / {{ hours.total }}</span>
     </div>
   </div>
 </template>
@@ -50,7 +50,7 @@ export default {
     justify-content center
     align-items center
     position absolute
-    top 50px
+    top 40px
     left 50%
     transform translate(-50%, -50%)
     width 230px
@@ -62,7 +62,7 @@ export default {
     @keyframes slideUp {
       0% {
         opacity 0
-        top 50px
+        top 40px
       }
       50% {
         opacity 0.5

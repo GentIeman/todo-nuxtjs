@@ -1,7 +1,7 @@
 <template>
   <section class="modal-window-wrapper">
     <div class="modal-window-wrapper__window-edit-data window-data">
-      <div class="test">
+      <div class="modal-window-wrapper__content">
         <p class="modal-window-wrapper__header-modal-window header-modal-window">Вам доступно для
           редактирования
           задачи</p>
@@ -78,7 +78,7 @@ export default {
     height 200px
     background-color #272732
 
-    .test {
+    .modal-window-wrapper__content {
       display flex
       justify-content space-between
       align-items center

@@ -11,11 +11,10 @@ export const getters = {
   },
   getSearching: state => search => {
     if (search.length === 0) return []
-    let result = state.tasks.filter((task) => {
+    return state.tasks.filter((task) => {
       return task.title.toLowerCase().indexOf(search.toLowerCase()) > -1;
     })
-    return result
-  }
+  },
 };
 
 export const actions = {

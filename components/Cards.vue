@@ -15,11 +15,11 @@ export default {
   props: ['sortDirection', 'sortKey'],
   computed: {
     ...mapGetters(['getTasks']),
-  sortedArray() {
+    sortedArray() {
       return this.sortTasks(this.sortKey, this.sortDirection)
-  }
+    }
   },
-  methods : {
+  methods: {
     sortTasks(sortBy, direction) {
       function dynamicSort(property, dir) {
         let sortOrder = 1
@@ -31,23 +31,11 @@ export default {
           return result * sortOrder;
         }
       }
+
       let tempObj = JSON.parse(JSON.stringify(this.getTasks))
       return tempObj.sort(dynamicSort(sortBy, direction)); // this.$store.getters
     }
   }
-    // sortTasks(sortBy, dir) {
-    //   function dynaSort
-    //   let sortOrder = 1
-    //   if (dir.toUpperCase() === 'DESC') {
-    //     sortOrder = -1
-    //   }
-    //   return function (a, b) {
-    //     let result = (a[sortBy] < b[sortBy]) ? -1 : (a[sortBy] > b[sortBy]) ? 1 : 0
-    //     return sortOrder * result
-    //   }
-    // }
-    //   return this.getTasks.sort(dynaSort)
-
 }
 </script>
 
@@ -68,7 +56,7 @@ export default {
   }
 
   .slide-fade-leave-to {
-    transform translateX(30px)
+    transform translateX(70px)
     visibility hidden
   }
 }

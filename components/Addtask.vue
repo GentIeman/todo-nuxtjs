@@ -5,7 +5,7 @@
       <img class="container__btn-search btn-search" src="@/assets/icons/fi-rr-plus.svg" alt="icon" width="22"
            height="22">
     </section>
-    <section class="modal-window-wrapper" v-show="showModalWindow" @keyup.esc="showModalWindow = false">
+    <section class="modal-window-wrapper" v-show="showModalWindow">
       <div class="modal-window-wrapper__window-add-data window-data">
         <div class="modal-window-wrapper__content">
           <p class="modal-window-wrapper__header-modal-window header-modal-window">Ваша задача начинается с...</p>
@@ -84,6 +84,7 @@ div {
 
   .btn-add-task {
     display flex
+    position fixed
     justify-content center
     align-items center
     width 44px

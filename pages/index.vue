@@ -5,15 +5,15 @@
       <div class="sidebar__wrapper">
         <p class="sidebar__header header">Сортировка</p>
         <ul class="block-sort">
-          <li class="block-sort__elements-list elements-list" v-for="elements in sortElement" :key="elements.sorter">
+          <li class="block-sort__elements-list elements-list" v-for="element in sortElement" :key="element.sorter">
             <a class="block-sort__elements-title elements-title block-sort__elements-title_active">{{
-                elements.name
+                element.name
               }}</a>
             <div class="block-sort__icons">
               <img class="block-sort__arrow icon-up" src="@/assets/icons/up-arrow.svg" alt="icon" width="20px"
-                   height="20px" @click="setSortParams(elements.sorter, 'ASC')">
+                   height="20px" @click="setSortParams(element.sorter, 'ASC')">
               <img class="block-sort__arrow icon-down" src="@/assets/icons/down-arrow.svg" alt="icon" width="20px"
-                   height="20px" @click="setSortParams(elements.sorter, 'DESC')">
+                   height="20px" @click="setSortParams(element.sorter, 'DESC')">
             </div>
           </li>
         </ul>
@@ -46,14 +46,21 @@ export default {
       this.getTasks.forEach(function (element) {
         total += Number(element.date)
         if (element.status === true) {
-          done += Number(element.date)
+          done += (Number(element.date))
         }
       })
       return {total: total, done: done}
     },
-    calculatedPercentage() {
-      return (this.currentHours.done / this.currentHours.total) * 100
-    }
+    currentProgressBar() {
+      let allTasks = this.getTasks.length;
+      let doneTasks = 0;
+      this.getTasks.forEach((element) => {
+        if (element.status === true) {
+          doneTasks++
+        }
+      })
+      return (doneTasks / allTasks) * 100
+    },
   },
   methods: {
     setSortParams(key, dir) {
@@ -74,7 +81,7 @@ export default {
   height 100%
 
   .sidebar {
-    position relative
+    position fixed
     top 0
     left 0
     grid-column 1 / 1

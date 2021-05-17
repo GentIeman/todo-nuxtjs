@@ -9,33 +9,14 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
+import {mapGetters} from 'vuex'
 
 export default {
   props: ['sortDirection', 'sortKey'],
   computed: {
     ...mapGetters(['getTasks']),
-    sortedArray() {
-      return this.sortTasks(this.sortKey, this.sortDirection)
-    }
   },
-  methods: {
-    sortTasks(sortBy, direction) {
-      function dynamicSort(property, dir) {
-        let sortOrder = 1
-        if (dir.toUpperCase() === 'DESC') {
-          sortOrder = -1;
-        }
-        return function (a, b) {
-          let result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-          return result * sortOrder;
-        }
-      }
-
-      let tempObj = JSON.parse(JSON.stringify(this.getTasks))
-      return tempObj.sort(dynamicSort(sortBy, direction)); // this.$store.getters
-    }
-  }
+  methods: {}
 }
 </script>
 
@@ -53,11 +34,12 @@ export default {
 
   .slide-fade-leave-active {
     transition all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0)
+    opacity 1
   }
 
   .slide-fade-leave-to {
     transform translateX(70px)
-    visibility hidden
+    opacity 0
   }
 }
 </style>

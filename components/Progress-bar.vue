@@ -1,16 +1,16 @@
 <template>
   <div class="progress"  @mouseover="showTooltipValue = true" @mouseleave="showTooltipValue = false">
-    <div class="progress__line" :style="{width: progress + '%'}" style="color: red">
+    <div class="progress__line" :style="{width: percentage.progress + '%'}" style="color: red">
     </div>
     <div class="tooltip" v-if="showTooltipValue">
-      <span class="tooltip__text">Часов выполнено: {{ hours.done }} / {{ hours.total }}</span>
+      <span class="tooltip__text">Часов выполнено: {{ percentage.done }} / {{ percentage.total }}</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['percentage', 'hours', 'progress'],
+  props: ['percentage'],
   data: () => ({
     showTooltipValue: false
   }),

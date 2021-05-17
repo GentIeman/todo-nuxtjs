@@ -19,7 +19,7 @@
         </ul>
       </div>
     </aside>
-    <Progress-bar :percentage="calculatedPercentage" v-if="currentHours.total > 0" :hours="currentHours"/>
+    <Progress-bar :percentage="totalCounters" v-if="totalCounters.total > 0" />
     <Cards/>
     <Addtask/>
   </section>
@@ -40,26 +40,18 @@ export default {
   }),
   computed: {
     ...mapGetters(['getTasks']),
-    currentHours() {
+    totalCounters() {
       let total = 0;
       let done = 0;
+      let doneTasksCount = 0;
       this.getTasks.forEach(function (element) {
         total += Number(element.date)
         if (element.status === true) {
           done += (Number(element.date))
+          doneTasksCount++
         }
       })
-      return {total: total, done: done}
-    },
-    currentProgressBar() {
-      let allTasks = this.getTasks.length;
-      let doneTasks = 0;
-      this.getTasks.forEach((element) => {
-        if (element.status === true) {
-          doneTasks++
-        }
-      })
-      return (doneTasks / allTasks) * 100
+      return {total: total, done: done, progress: (doneTasksCount / this.getTasks.length)*100}
     },
   },
   methods: {

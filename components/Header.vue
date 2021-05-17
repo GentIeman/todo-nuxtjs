@@ -1,5 +1,6 @@
 <template>
   <header class="header">
+    <h1 class="header__heading heading">Todo-list</h1>
     <img @click="showSearchModalWindow = true" class="header__btn-search btn-search"
          src="@/assets/icons/fi-rr-search.svg" alt="icon" width="18" height="18">
     <Search v-show="showSearchModalWindow" @close="showSearchModalWindow = false"/>
@@ -32,6 +33,19 @@ export default {
   z-index 2
   grid-column 1 / 6
   grid-row 1 / 2
+
+  &__heading {
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+  }
+
+  .heading {
+    font bold 1.5em sans-serif
+    color #fff
+    letter-spacing 3px
+  }
 
   &__btn-search {
     position absolute

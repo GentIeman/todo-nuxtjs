@@ -24,11 +24,9 @@ export default {
   }),
   methods: {
     showSideBar() {
-      this.propShowSidebar = false
       this.$emit('showSideBar')
     },
     hideSideBar() {
-      this.propShowSidebar = true
       this.$emit('hideSideBar')
     }
   }
@@ -47,11 +45,9 @@ export default {
   background-color #21212B
   box-shadow rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px
   height 56px
-  z-index 2
+  z-index 3
   grid-column 1 / 6
   grid-row 1 / 2
-
-
 
   &__open-sidebar-hamburger {
     position absolute

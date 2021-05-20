@@ -63,9 +63,6 @@ export default {
       this.sortDirection = dir
       this.sortKey = key
     },
-    hideSideBar() {
-      this.isShowSideBar = false
-    }
   },
 }
 </script>
@@ -86,7 +83,7 @@ export default {
     grid-row 1 / 2
     height 100%
     background-color #21212b
-    z-index 1
+    z-index 2
 
     &__wrapper {
       position relative

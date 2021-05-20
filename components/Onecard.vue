@@ -131,4 +131,10 @@ export default {
     }
   }
 }
+
+@media screen and (max-width 1300px) {
+  .card {
+    min-width 700px
+  }
+}
 </style>

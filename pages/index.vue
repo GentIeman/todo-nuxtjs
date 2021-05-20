@@ -1,26 +1,27 @@
 <template>
   <section class="container">
-    <Header/>
-    <aside class="sidebar">
+    <Header @showSideBar="isShowSideBar = true" :propShowSidebar="isShowSideBar" @hideSideBar="isShowSideBar = false "/>
+    <aside class="sidebar" :class="{'sidebar-slide-left': isShowSideBar}">
       <div class="sidebar__wrapper">
         <p class="sidebar__header header">Сортировка</p>
         <ul class="block-sort">
-          <li class="block-sort__elements-list elements-list" v-for="element in sortElement" :key="element.sorter">
-            <a class="block-sort__elements-title elements-title block-sort__elements-title_active">{{
+          <li class="block-sort__element-list element-list" :class="{'element-slide-left': isShowSideBar}"
+              v-for="element in sortElement" :key="element.sorter">
+            <a class="block-sort__element-title element-title block-sort__elements-title_active">{{
                 element.name
               }}</a>
             <div class="block-sort__icons">
               <img class="block-sort__arrow icon-up" src="@/assets/icons/up-arrow.svg" alt="icon" width="20px"
-                   height="20px" @click="setSortParams(element.sorter, 'ASC')">
+                   height="20px" @click="setSortParams(sortKey, sortDirection)">
               <img class="block-sort__arrow icon-down" src="@/assets/icons/down-arrow.svg" alt="icon" width="20px"
-                   height="20px" @click="setSortParams(element.sorter, 'DESC')">
+                   height="20px" @click="setSortParams(sortKey, sortDirection)">
             </div>
           </li>
         </ul>
       </div>
     </aside>
-    <Progress-bar :percentage="totalCounters" v-if="totalCounters.total > 0" />
-    <Cards/>
+    <Progress-bar :percentage="totalCounters" v-if="totalCounters.total > 0"/>
+    <Cards :sortDirection="sortDirection" :sortKey="sortKey"/>
     <Addtask/>
   </section>
 </template>
@@ -35,8 +36,11 @@ export default {
       {name: "длительности", sorter: "date"},
       {name: "статусу", sorter: "status"},
     ],
+    sortDirection: '',
+    sortKey: '',
     upArrow: '../assets/icons/up-arrow.svg',
     downArrow: '../assets/icons/down-arrow.svg',
+    isShowSideBar: false
   }),
   computed: {
     ...mapGetters(['getTasks']),
@@ -51,15 +55,18 @@ export default {
           doneTasksCount++
         }
       })
-      return {total: total, done: done, progress: (doneTasksCount / this.getTasks.length)*100}
+      return {total: total, done: done, progress: (doneTasksCount / this.getTasks.length) * 100}
     },
   },
   methods: {
     setSortParams(key, dir) {
       this.sortDirection = dir
       this.sortKey = key
+    },
+    hideSideBar() {
+      this.isShowSideBar = false
     }
-  }
+  },
 }
 </script>
 
@@ -73,13 +80,13 @@ export default {
   height 100%
 
   .sidebar {
-    position fixed
-    top 0
-    left 0
-    grid-column 1 / 1
-    grid-row 1 / 4
+    position relative
+    left -100%
+    grid-column 1 / 2
+    grid-row 1 / 2
     height 100%
     background-color #21212b
+    z-index 1
 
     &__wrapper {
       position relative
@@ -105,7 +112,7 @@ export default {
         margin 0
         padding 0
 
-        &__elements-list {
+        &__element-list {
           display flex
           align-items center
           position relative
@@ -113,33 +120,72 @@ export default {
           left 0
           padding 15px 40px
 
+          &:nth-child(1) {
+            left: -100%;
+          }
+
+          &:nth-child(2) {
+            left: -130%;
+          }
+
+          &:nth-child(3) {
+            left: -160%;
+          }
+
           .block-sort__icons {
+            display flex
             position relative
-            padding: 0 10px;
 
             .block-sort__arrow {
               cursor pointer
+              margin: 0 2px
             }
           }
 
-          .block-sort__elements-title {
+          .block-sort__element-title {
             position relative
           }
 
-          .elements-title {
+          .element-title {
             text-decoration none
-            font-family sans-serif
+            font normal 1.3em sans-serif
             color #7f8c8d
             cursor pointer
             transition all .5s ease
           }
+
+          @media screen and (max-width 1300px) {
+            .element-title {
+              font-size 1em
+            }
+          }
         }
 
-        &__elements-title_active:hover {
+        .element-slide-left {
+          transition 1s all ease
+          left 0
+        }
+
+        &__element-title_active:hover {
           color: #535c68
         }
       }
     }
+  }
+
+  .sidebar-slide-left {
+    left 0
+  }
+
+  @media screen and (max-width 1300px) {
+    .sidebar {
+      width 95%
+    }
+  }
+
+  .sidebar-slide-left {
+    left 0
+    transition all .5s ease
   }
 }
 </style>

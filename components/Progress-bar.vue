@@ -24,6 +24,7 @@ export default {
   height auto
   width 100%
   grid-column 1 / 6
+  z-index 1
 
   &:before {
     content ''

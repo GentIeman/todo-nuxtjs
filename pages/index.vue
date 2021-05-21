@@ -12,9 +12,9 @@
               }}</a>
             <div class="block-sort__icons">
               <img class="block-sort__arrow icon-up" src="@/assets/icons/up-arrow.svg" alt="icon" width="20px"
-                   height="20px" @click="setSortParams(sortKey, sortDirection)">
+                   height="20px" @click="setSortParams(element.sorter, 'ASC')">
               <img class="block-sort__arrow icon-down" src="@/assets/icons/down-arrow.svg" alt="icon" width="20px"
-                   height="20px" @click="setSortParams(sortKey, sortDirection)">
+                   height="20px" @click="setSortParams(element.sorter, 'DESC')">
             </div>
           </li>
         </ul>
@@ -84,6 +84,7 @@ export default {
     height 100%
     background-color #21212b
     z-index 2
+    transition all 1.5s ease
 
     &__wrapper {
       position relative
@@ -116,17 +117,18 @@ export default {
           top 0
           left 0
           padding 15px 40px
+          transition 1s ease all
 
           &:nth-child(1) {
-            left: -100%;
+            transform translateX(-100%)
           }
 
           &:nth-child(2) {
-            left: -130%;
+            transform translateX(-130%)
           }
 
           &:nth-child(3) {
-            left: -160%;
+            transform translateX(-160%)
           }
 
           .block-sort__icons {
@@ -160,7 +162,7 @@ export default {
 
         .element-slide-left {
           transition 1s all ease
-          left 0
+          transform translateY(0)
         }
 
         &__element-title_active:hover {

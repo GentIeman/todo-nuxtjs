@@ -48,13 +48,14 @@ export default {
   min-height 77px
   background-color #272732
   border-radius 10px
-  box-shadow rgba(0, 0, 0, 0.7) 0px 3px 8px 0px
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   margin 20px 0
   cursor pointer
-  transition all .5s ease-in
+  transition background-color .5s ease-in-out
+  z-index 1
 
   &:hover {
-    background-color #2c3e50
+    background-color #1E1E1E
   }
 
   &__checkbox {

@@ -2,9 +2,7 @@
   <section class="modal-window-wrapper">
     <div class="modal-window-wrapper__window-edit-data window-data">
       <div class="modal-window-wrapper__content">
-        <p class="modal-window-wrapper__header-modal-window header-modal-window">Вам доступно для
-          редактирования
-          задачи</p>
+        <p class="modal-window-wrapper__header-modal-window header-modal-window">Редактирование задачи</p>
         <img class="modal-window-wrapper__close-modal-window" src="@/assets/icons/fi-rr-cross.svg" alt="icon"
              width="16" height="16" @click="closeModalWindowEdit()">
         <input type="text" class="modal-window-wrapper__edit-title-task-form edit-title-task-form"
@@ -67,7 +65,8 @@ export default {
   width 100%
   height 100%
   background-color rgba(0, 0, 0, 0.8)
-  z-index 5
+  z-index 3
+  border solid 1px red
 
   &__window-edit-data {
     position: absolute

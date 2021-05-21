@@ -88,7 +88,7 @@ export default {
 
   &__btn-search {
     position absolute
-    right 20px
+    right 30px
   }
 
   .btn-search {

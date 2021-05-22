@@ -52,7 +52,6 @@ export default {
   margin 20px 0
   cursor pointer
   transition background-color .5s ease-in-out
-  z-index 1
 
   &:hover {
     background-color #1E1E1E

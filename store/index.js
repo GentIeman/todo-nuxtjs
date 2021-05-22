@@ -1,8 +1,12 @@
 export const state = () => ({
-    tasks: []
+    tasks: [],
+    lastAddedId:null
 });
 
 export const getters = {
+  getLastAdded(state) {
+    return state.lastAddedId
+  },
   getTasks(state) {
     return state.tasks
   },
@@ -39,8 +43,15 @@ export const actions = {
 };
 
 export const mutations = {
+  changeSortedStatusForNewTask(state){
+    // state.tasks.find(item => {
+    //   if (item.id===id) {item.sortedAfterAdding = true}
+    // })
+    state.lastAddedId=null
+  },
   addTasks(state, data) {
     state.tasks.push(data)
+    state.lastAddedId=data.id
   },
   removeTasks(state, taskId) {
     state.tasks.splice(state.tasks.findIndex(function (item) {

@@ -64,9 +64,8 @@ export default {
   align-items center
   position relative
   top -100%
-  width 800px
+  min-width 800px
   height auto
-  min-height 77px
   background-color #272732
   border-radius 10px
   box-shadow rgba(0, 0, 0, 0.7) 0px 3px 8px 0px
@@ -152,6 +151,12 @@ export default {
       margin 0
       cursor pointer
     }
+  }
+}
+
+@media screen and (max-width 1300px){
+  .full-size-card {
+    width 700px
   }
 }
 

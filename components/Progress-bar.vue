@@ -1,6 +1,6 @@
 <template>
-  <div class="progress"  @mouseover="showTooltipValue = true" @mouseleave="showTooltipValue = false">
-    <div class="progress__line" :style="{width: percentage.progress + '%'}" style="color: red">
+  <div class="progress">
+    <div class="progress__line" @mouseover="showTooltipValue = true" @mouseleave="showTooltipValue = false" :style="{width: percentage.progress + '%'}" style="color: red">
     </div>
     <div class="tooltip" v-if="showTooltipValue">
       <span class="tooltip__text">Часов выполнено: {{ percentage.done }} / {{ percentage.total }}</span>

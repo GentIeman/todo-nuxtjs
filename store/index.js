@@ -44,9 +44,6 @@ export const actions = {
 
 export const mutations = {
   changeSortedStatusForNewTask(state){
-    // state.tasks.find(item => {
-    //   if (item.id===id) {item.sortedAfterAdding = true}
-    // })
     state.lastAddedId=null
   },
   addTasks(state, data) {

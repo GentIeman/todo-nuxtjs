@@ -23,6 +23,7 @@
     <Progress-bar :percentage="totalCounters" v-if="totalCounters.total > 0"/>
     <Cards :sortDirection="sortDirection" :sortKey="sortKey"/>
     <Addtask/>
+    <Linked/>
   </section>
 </template>
 
@@ -80,7 +81,7 @@ export default {
     position relative
     left -100%
     grid-column 1 / 2
-    grid-row 1 / 2
+    grid-row 1 / 4
     height 100%
     background-color #21212b
     z-index 2

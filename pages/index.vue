@@ -23,7 +23,6 @@
     <Progress-bar :percentage="totalCounters" v-if="totalCounters.total > 0"/>
     <Cards :sortDirection="sortDirection" :sortKey="sortKey"/>
     <Addtask/>
-    <Linked/>
   </section>
 </template>
 

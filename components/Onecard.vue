@@ -18,6 +18,7 @@
     <Edittask :id="data.id" v-if="showModalWindowEdit"
               @edited='showModalWindowEdit = false'/>
     <Fullsizecard :data="data" v-if="showFullSizeCard" @close="showFullSizeCard = false"/>
+    <Linked/>
   </section>
 </template>
 

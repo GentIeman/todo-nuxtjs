@@ -29,6 +29,7 @@ export const actions = {
       title: data.title,
       date: data.date,
       status: false,
+      linked: ''
     }
 
     commit('addTasks', newData)

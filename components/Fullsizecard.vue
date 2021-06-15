@@ -65,7 +65,7 @@ export default {
   position relative
   top -100%
   min-width 800px
-  height auto
+  height 80px
   background-color #272732
   border-radius 10px
   box-shadow rgba(0, 0, 0, 0.7) 0px 3px 8px 0px

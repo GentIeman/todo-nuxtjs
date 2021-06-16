@@ -34,7 +34,6 @@ export default {
     titleTask: '',
     dateTask: 0
   }),
-  mixins: ['тестовая функция'],
   computed: {
     ...mapGetters(['getTasks'])
   },

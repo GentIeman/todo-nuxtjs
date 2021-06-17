@@ -66,7 +66,6 @@ export default {
   height 100%
   background-color rgba(0, 0, 0, 0.8)
   z-index 10
-  border solid 1px red
 
   &__window-edit-data {
     position: absolute

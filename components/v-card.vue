@@ -15,10 +15,10 @@
       <img class="card__trash-icon" src="@/assets/icons/fi-rr-trash.svg" alt="icon"
            width="25" height="25" @click="removeTask(data.id)">
     </div>
-    <Edittask :id="data.id" v-if="showModalWindowEdit"
+    <v-edit-task :id="data.id" v-if="showModalWindowEdit"
               @edited='showModalWindowEdit = false'/>
-    <Fullsizecard :data="data" v-if="showFullSizeCard" @close="showFullSizeCard = false"/>
-    <Linked/>
+    <v-full-size-card :data="data" v-if="showFullSizeCard" @close="showFullSizeCard = false"/>
+    <v-link/>
   </section>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <Header @showSideBar="isShowSideBar = true" :propShowSidebar="isShowSideBar" @hideSideBar="isShowSideBar = false "/>
+    <v-header @showSideBar="isShowSideBar = true" :propShowSidebar="isShowSideBar" @hideSideBar="isShowSideBar = false "/>
     <aside class="sidebar" :class="{'sidebar-slide-left': isShowSideBar}">
       <div class="sidebar__wrapper">
         <p class="sidebar__header header">Сортировка</p>
@@ -20,9 +20,9 @@
         </ul>
       </div>
     </aside>
-    <Progress-bar :percentage="totalCounters" v-if="totalCounters.total > 0"/>
-    <Cards :sortDirection="sortDirection" :sortKey="sortKey"/>
-    <Addtask/>
+    <v-progress-bar :percentage="totalCounters" v-if="totalCounters.total > 0"/>
+    <v-cards :sortDirection="sortDirection" :sortKey="sortKey"/>
+    <v-add-task/>
   </section>
 </template>
 

@@ -9,12 +9,12 @@
     <h1 class="header__heading heading">Todo-list</h1>
     <img @click="showSearchModalWindow = true" class="header__btn-search btn-search"
          src="@/assets/icons/fi-rr-search.svg" alt="icon" width="18" height="18">
-    <Search v-show="showSearchModalWindow" @close="showSearchModalWindow = false"/>
+    <v-search v-show="showSearchModalWindow" @close="showSearchModalWindow = false"/>
   </header>
 </template>
 
 <script>
-import Search from "./Search";
+import Search from "./v-search";
 
 export default {
   components: {Search},

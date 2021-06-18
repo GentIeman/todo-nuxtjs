@@ -2,7 +2,7 @@
   <section class="tasks">
     <ul class="tasks__list">
       <transition-group name="slide-fade">
-        <Onecard v-for="dataTask in sortedArray" :key="dataTask.id" :data="dataTask"/>
+        <v-card v-for="dataTask in sortedArray" :key="dataTask.id" :data="dataTask"/>
       </transition-group>
     </ul>
   </section>

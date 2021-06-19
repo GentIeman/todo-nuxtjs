@@ -10,12 +10,11 @@
         <p class="card__date date">{{ data.date }} {{ formatHours(data.date) }}</p>
       </div>
       <div class="card__item card__icon-link" @mouseover="hoverIcon = 'link'"  @mouseleave="hoverIcon = 'unlink'">
-        <img class="icon-link" :src="'/icons/' + hoverIcon  +  '.svg'" alt="icon" width="25px" height="25px" @click="getLink">
+        <img class="icon-link" :src="'/icons/' + hoverIcon  +  '.svg'" alt="icon" width="25px" height="25px">
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import {mapGetters} from "vuex";
 import formatHours from '@/mixins/format-hours.js';
@@ -30,11 +29,6 @@ export default {
   }),
   computed: {
     ...mapGetters(['getTasks']),
-  },
-  methods: {
-    getLink() {
-      return true
-    }
   }
 }
 </script>

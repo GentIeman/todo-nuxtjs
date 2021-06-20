@@ -18,7 +18,6 @@
     <v-edit-task :id="data.id" v-if="showModalWindowEdit"
               @edited='showModalWindowEdit = false'/>
     <v-full-size-card :data="data" v-if="showFullSizeCard" @close="showFullSizeCard = false"/>
-<!--    <v-link/>-->
   </section>
 </template>
 

@@ -17,9 +17,10 @@
         </div>
       </div>
       <div class="link-task" :class="{'show-link-task' : isShowLink}">
-        <a href="#" class="link-task__link link">Сделать связь с карточкой</a>
+        <a href="#" class="link-task__link link" @click="showModalWindowLink = true">Сделать связь с карточкой</a>
       </div>
     </div>
+    <v-link v-if="showModalWindowLink" @close="showModalWindowLink = false"/>
   </section>
 </template>
 
@@ -31,7 +32,8 @@ export default {
   data: () => ({
     showFullSizeCard: false,
     isSlide: false,
-    isShowLink: false
+    isShowLink: false,
+    showModalWindowLink: false
   }),
   props: ["data"],
   mixins: [formatHours],

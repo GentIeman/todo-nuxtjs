@@ -1,5 +1,5 @@
 <template>
-  <div class="form__wrapper">
+  <div class="form__wrapper" @click.self="close">
     <div class="form">
       <header class="form__header">
         <h1 class="header">Сделать связь с:</h1>
@@ -26,6 +26,11 @@ export default {
   }),
   computed: {
     ...mapGetters(['getTasks'])
+  },
+  methods: {
+    close () {
+      this.$emit('close')
+    }
   }
 }
 </script>

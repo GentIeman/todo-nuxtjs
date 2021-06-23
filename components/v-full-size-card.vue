@@ -20,7 +20,7 @@
         <a href="#" class="link-task__link link" @click="showModalWindowLink = true">Сделать связь с карточкой</a>
       </div>
     </div>
-    <v-link v-if="showModalWindowLink" @close="showModalWindowLink = false"/>
+    <v-link v-if="showModalWindowLink" @close="showModalWindowLink = false" :currentId="data.id"/>
   </section>
 </template>
 

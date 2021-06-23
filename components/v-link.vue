@@ -6,7 +6,7 @@
       </header>
       <div class="form__inner">
         <div class="form__list">
-          <v-card-link v-for="task in getTasks" :data="task" :key="task.id" />
+          <v-card-link v-for="task in getTasks" :data="task" :key="task.id" v-show="task.id !== currentId"/>
         </div>
       </div>
     </div>
@@ -20,7 +20,7 @@ import VCardLink from "./v-card-link";
 export default {
   name: "Linked",
   components: {VCardLink},
-  props: ['id'],
+  props: ['currentId'],
   computed: {
     ...mapGetters(['getTasks'])
   },

@@ -6,7 +6,7 @@
       </header>
       <div class="form__inner">
         <div class="form__list">
-          <v-card-link v-for="task in getTasks" :data="task" :key="task.id"/>
+          <v-card-link v-for="task in getTasks" :data="task" :key="task.id" />
         </div>
       </div>
     </div>
@@ -20,15 +20,12 @@ import VCardLink from "./v-card-link";
 export default {
   name: "Linked",
   components: {VCardLink},
-  data: () => ({
-    itTask: false,
-    hoverIcon: false,
-  }),
+  props: ['id'],
   computed: {
     ...mapGetters(['getTasks'])
   },
   methods: {
-    close () {
+    close() {
       this.$emit('close')
     }
   }
@@ -85,4 +82,5 @@ export default {
     }
   }
 }
+
 </style>

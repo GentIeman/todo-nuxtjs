@@ -68,10 +68,10 @@ export default {
     justify-content center
     align-self center
     flex-direction column
-    flex-wrap wrap
     position relative
     left 30px
     width auto
+    max-width 400px
     height 100%
     padding 0 15px
 
@@ -79,6 +79,9 @@ export default {
       position relative
       margin 0
       padding 0
+      text-overflow ellipsis
+      overflow hidden
+      white-space nowrap
     }
 
     .title {

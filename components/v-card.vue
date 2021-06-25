@@ -10,9 +10,9 @@
       <p class="card__date date">{{ data.date }} {{ formatHours(data.date) }}</p>
     </div>
     <div class="card__block-control-task">
-      <img class="card__edit-icon" src="@/assets/icons/fi-rr-edit.svg" alt="icon" width="25" height="25"
+      <img class="card__edit-icon" src="/icons/fi-rr-edit.svg" alt="icon" width="25" height="25"
            @click="showModalWindowEdit = true">
-      <img class="card__trash-icon" src="@/assets/icons/fi-rr-trash.svg" alt="icon"
+      <img class="card__trash-icon" src="/icons/fi-rr-trash.svg" alt="icon"
            width="25" height="25" @click="removeTask(data.id)">
     </div>
     <v-edit-task :id="data.id" v-if="showModalWindowEdit"
@@ -71,7 +71,7 @@ export default {
     position relative
     left 30px
     width auto
-    max-width 400px
+    max-width 300px
     height 100%
     padding 0 15px
 

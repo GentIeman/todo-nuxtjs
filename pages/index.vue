@@ -11,9 +11,9 @@
                 element.name
               }}</a>
             <div class="block-sort__icons">
-              <img class="block-sort__arrow icon-up" src="@/assets/icons/up-arrow.svg" alt="icon" width="20px"
+              <img class="block-sort__arrow icon-up" src="/icons/up-arrow.svg" alt="icon" width="20px"
                    height="20px" @click="setSortParams(element.sorter, 'ASC')">
-              <img class="block-sort__arrow icon-down" src="@/assets/icons/down-arrow.svg" alt="icon" width="20px"
+              <img class="block-sort__arrow icon-down" src="/icons/down-arrow.svg" alt="icon" width="20px"
                    height="20px" @click="setSortParams(element.sorter, 'DESC')">
             </div>
           </li>

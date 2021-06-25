@@ -3,7 +3,7 @@
     <div class="modal-window-wrapper__window-edit-data window-data">
       <div class="modal-window-wrapper__content">
         <p class="modal-window-wrapper__header-modal-window header-modal-window">Редактирование задачи</p>
-        <img class="modal-window-wrapper__close-modal-window" src="@/assets/icons/fi-rr-cross.svg" alt="icon"
+        <img class="modal-window-wrapper__close-modal-window" src="/icons/fi-rr-cross.svg" alt="icon"
              width="16" height="16" @click="closeModalWindowEdit()">
         <input type="text" class="modal-window-wrapper__edit-title-task-form edit-title-task-form"
                placeholder="Введите название задачи" v-model="tempTitle">

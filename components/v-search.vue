@@ -27,7 +27,7 @@
                 <p class="card__date date">{{ searchElement.date }} {{ formatHours(searchElement.date) }}</p>
               </div>
               <div class="card__block-control-task">
-                <img class="card__trash-icon" src="@/assets/icons/fi-rr-trash.svg" alt="icon"
+                <img class="card__trash-icon" src="/icons/fi-rr-trash.svg" alt="icon"
                      width="25" height="25" @click="removeTask(searchElement.id)">
               </div>
             </div>

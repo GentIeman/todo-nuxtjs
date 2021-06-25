@@ -12,7 +12,7 @@
           <p class="full-size-card__date date">{{ data.date }} {{ formatHours(data.date) }}</p>
         </div>
         <div class="full-size-card__block-control-task">
-          <img class="full-size-card__trash-icon" src="@/assets/icons/fi-rr-trash.svg" alt="icon"
+          <img class="full-size-card__trash-icon" src="/icons/fi-rr-trash.svg" alt="icon"
                width="25" height="25" @click="removeTask(data.id)">
         </div>
       </div>

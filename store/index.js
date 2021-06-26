@@ -1,6 +1,6 @@
 export const state = () => ({
     tasks: [],
-    lastAddedId:null
+    lastAddedId: null
 });
 
 export const getters = {
@@ -11,7 +11,7 @@ export const getters = {
     return state.tasks
   },
   getTaskById: state => id => {
-    return state.tasks.find(crane => crane.id === id);
+    return state.tasks.find(task => task.id === id);
   },
   getSearching: state => search => {
     if (search.length === 0) return []
@@ -19,6 +19,11 @@ export const getters = {
       return task.title.toLowerCase().indexOf(search.toLowerCase()) > -1;
     })
   },
+  getTaskTitle(state) {
+    return state.tasks.forEach((task) => {
+      return task.title
+    })
+  }
 };
 
 export const actions = {
@@ -40,12 +45,12 @@ export const actions = {
   },
   changeTask({commit}, id) {
     commit('editTask', id)
-  },
+  }
 };
 
 export const mutations = {
   changeSortedStatusForNewTask(state){
-    state.lastAddedId=null
+    state.lastAddedId = null
   },
   addTasks(state, data) {
     state.tasks.push(data)

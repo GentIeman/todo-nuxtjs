@@ -18,11 +18,6 @@ export const getters = {
     return state.tasks.filter((task) => {
       return task.title.toLowerCase().indexOf(search.toLowerCase()) > -1;
     })
-  },
-  getTaskTitle(state) {
-    return state.tasks.forEach((task) => {
-      return task.title
-    })
   }
 };
 
@@ -34,7 +29,7 @@ export const actions = {
       title: data.title,
       date: data.date,
       status: false,
-      linked: ''
+      linked: null
     }
 
     commit('addTasks', newData)
@@ -45,6 +40,13 @@ export const actions = {
   },
   changeTask({commit}, id) {
     commit('editTask', id)
+  },
+  addLink({commit}, payload) {
+    commit('editTask', {
+      toEdit : "linked",
+      value: payload.linkTo,
+      id: payload.id
+    })
   }
 };
 

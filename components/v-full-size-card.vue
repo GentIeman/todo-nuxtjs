@@ -15,6 +15,9 @@
           <img class="full-size-card__trash-icon" src="/icons/fi-rr-trash.svg" alt="icon"
                width="25" height="25" @click="removeTask(data.id)">
         </div>
+        <div v-if="data.linked">
+          {{ getTaskById(data.linked).title }}
+        </div>
       </div>
       <div class="link-task" :class="{'show-link-task' : isShowLink}">
         <a href="#" class="link-task__link link" @click="showModalWindowLink = true">Сделать связь с карточкой</a>
@@ -25,7 +28,7 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import formatHours from '@/mixins/format-hours.js';
 
 export default {
@@ -37,6 +40,9 @@ export default {
   }),
   props: ["data"],
   mixins: [formatHours],
+  computed: {
+    ...mapGetters(['getTaskById'])
+  },
   methods: {
     ...mapActions({
       removeTask: 'removeTask',

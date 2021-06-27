@@ -6,16 +6,16 @@
           <label>Задача</label>
           <p class="card__title title">{{ data.title }}</p>
         </div>
+        <div v-if="data.linked">
+          {{ getTaskById(data.linked).title }}
+        </div>
         <div class="card__item card__content-date">
           <label>Время выполения</label>
           <p class="card__date date">{{ data.date }} {{ formatHours(data.date) }}</p>
         </div>
       </div>
-      <div class="card__item card__icon-link" @mouseover="hoverIcon = 'link'" @mouseleave="hoverIcon = 'unlink'" @click="createLink">
+      <div class="card__item card__btn card__icon-link" :class="{'card__btn_click' : relationStyle}" @click="createLink" @mouseup="relationStyle = false" @mousedown="relationStyle = true">
         <img class="icon-link" :src="'/icons/' + hoverIcon  +  '.svg'" alt="icon" width="25px" height="25px">
-      </div>
-      <div v-if="data.linked">
-        {{ getTaskById(data.linked).title }}
       </div>
     </div>
   </div>
@@ -30,6 +30,7 @@ export default {
   mixins: [formatHours],
   data: () => ({
     hoverIcon: 'unlink',
+    relationStyle: false
   }),
   computed: {
     ...mapGetters({getTasks: 'getTasks', getTaskById: 'getTaskById'})
@@ -41,6 +42,7 @@ export default {
         id: this.parentId,
         linkTo: this.data.id,
       })
+      this.hoverIcon = 'link'
     }
   }
 }
@@ -53,7 +55,6 @@ export default {
   width 100%
   height 60px
   border-bottom solid 1px #ccc
-  transition background-color 1s ease
   cursor pointer
 
   &__inner {
@@ -63,6 +64,34 @@ export default {
     position relative
     width 100%
     bottom 6px
+
+    .card__icon-link {
+      display flex
+      justify-content center
+      align-items center
+      position relative
+      padding 5px
+      border-radius 5px
+      background linear-gradient(30deg, #95F9C3, #0B3866)
+
+      &:before {
+        content ''
+        position absolute
+        top 0
+        left 0
+        background linear-gradient(30deg, #95F9C3, #0B3866)
+        width 100%
+        height 100%
+        border-radius 10px
+        opacity 0
+        z-index: -1;
+      }
+
+      &:hover:before {
+        filter blur(5px)
+        opacity 1
+      }
+    }
 
     .card__content {
       display flex
@@ -94,6 +123,36 @@ export default {
 
   .icon-link {
     cursor pointer
+  }
+}
+
+.card__btn_click {
+  position relative
+
+  &:after {
+    content ''
+    position absolute
+    width 100%
+    height 100%
+    padding 10px
+    border-radius 5px
+    animation click 0.1s ease-in forwards
+  }
+}
+
+@keyframes click {
+  0% {
+    opacity: 1;
+    transform: scale3d(0.4, 0.4, 1);
+  }
+  80% {
+    box-shadow: inset 0 0 0 2px lightgreen;
+    opacity: .1;
+  }
+  100% {
+    box-shadow: inset 0 0 0 2px lightgreen;
+    opacity: 0;
+    transform: scale3d(1.2, 1.2, 1);
   }
 }
 </style>

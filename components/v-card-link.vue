@@ -11,27 +11,38 @@
           <p class="card__date date">{{ data.date }} {{ formatHours(data.date) }}</p>
         </div>
       </div>
-      <div class="card__item card__icon-link" @mouseover="hoverIcon = 'link'" @mouseleave="hoverIcon = 'unlink'">
+      <div class="card__item card__icon-link" @mouseover="hoverIcon = 'link'" @mouseleave="hoverIcon = 'unlink'" @click="createLink">
         <img class="icon-link" :src="'/icons/' + hoverIcon  +  '.svg'" alt="icon" width="25px" height="25px">
+      </div>
+      <div v-if="data.linked">
+        {{ getTaskById(data.linked).title }}
       </div>
     </div>
   </div>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import {mapGetters, mapActions} from "vuex";
 import formatHours from '@/mixins/format-hours.js';
 
 export default {
   name: "v-card-link",
-  props: ['data'],
+  props: ['data', 'parentId'],
   mixins: [formatHours],
   data: () => ({
-    itTask: false,
     hoverIcon: 'unlink',
   }),
   computed: {
-    ...mapGetters(['getTasks']),
+    ...mapGetters({getTasks: 'getTasks', getTaskById: 'getTaskById'})
   },
+  methods: {
+    ...mapActions({addLink: 'addLink'}),
+    createLink() {
+      this.addLink({
+        id: this.parentId,
+        linkTo: this.data.id,
+      })
+    }
+  }
 }
 </script>
 

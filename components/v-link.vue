@@ -6,7 +6,7 @@
       </header>
       <div class="form__inner">
         <div class="form__list">
-          <v-card-link v-for="task in getTasks" :data="task" :key="task.id" v-show="task.id !== currentId"/>
+          <v-card-link v-for="task in getTasks" :data="task" :key="task.id" v-show="task.id !== currentId" :parentId="currentId"/>
         </div>
       </div>
     </div>

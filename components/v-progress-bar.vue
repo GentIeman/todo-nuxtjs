@@ -12,36 +12,26 @@
 export default {
   props: ['percentage'],
   data: () => ({
-    showTooltipValue: false
-  }),
+    showTooltipValue: false,
+  })
 }
 </script>
 
 <style scoped lang="stylus">
 .progress {
-  position absolute
+  position fixed
   top 55px
   height auto
   width 100%
   grid-column 1 / 6
   z-index 2
 
-  &:before {
-    content ''
-    position absolute
-    bottom -25px
-    left 50%
-    transform translate(-50%, -50%)
-    width 350px
-    height 1.4px
-    background-color #252525
-  }
-
   &__line {
     position relative
     transition width .3s ease-in
     height 10px
     background linear-gradient(30deg, #95F9C3, #0B3866)
+    box-shadow rgba(0, 0, 0, 0.35) 0px 5px 15px
     cursor pointer
   }
 
@@ -56,7 +46,8 @@ export default {
     width 230px
     height 45px
     border-radius 10px
-    background-color #272732
+    background-color #3c3c4c
+    box-shadow rgba(0, 0, 0, 0.35) 0px 5px 15px
     animation slideUp .5s forwards
 
     @keyframes slideUp {

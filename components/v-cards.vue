@@ -61,7 +61,7 @@ export default {
 .tasks {
   display flex
   position absolute
-  top 120px
+  top 90px
   justify-content center
   align-items center
   width 100%

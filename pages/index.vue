@@ -77,12 +77,14 @@ export default {
   height 100%
 
   .sidebar {
-    position relative
+    position fixed
+    top 0
     left -100%
-    grid-column 1 / 2
-    grid-row 1 / 4
+    grid-column 1 / 3
+    grid-row 1 / 2
     height 100%
     background-color #21212b
+    width 300px
     z-index 2
     transition all 1.5s ease
 
@@ -178,7 +180,7 @@ export default {
 
   @media screen and (max-width 1300px) {
     .sidebar {
-      width 95%
+      width 250px
     }
   }
 

@@ -72,25 +72,6 @@ export default {
       position relative
       padding 5px
       border-radius 5px
-      background linear-gradient(30deg, #95F9C3, #0B3866)
-
-      &:before {
-        content ''
-        position absolute
-        top 0
-        left 0
-        background linear-gradient(30deg, #95F9C3, #0B3866)
-        width 100%
-        height 100%
-        border-radius 10px
-        opacity 0
-        z-index: -1;
-      }
-
-      &:hover:before {
-        filter blur(5px)
-        opacity 1
-      }
     }
 
     .card__content {

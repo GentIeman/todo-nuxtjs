@@ -1,6 +1,6 @@
 <template>
   <section class="modal-window-background" @click.self="closeTask">
-    <div class="full-size-card__inner" :class="{'slide-up': isSlide}">
+    <div class="full-size-card__wrapper" :class="{'slide-up': isSlideUp}">
       <div class="full-size-card">
         <vs-checkbox dark class="full-size-card__checkbox"
                      @change="changeTask({id: data.id, toEdit: 'status', value: !data.status})"
@@ -50,7 +50,7 @@ import formatHours from '@/mixins/format-hours.js';
 export default {
   data: () => ({
     showFullSizeCard: false,
-    isSlide: false,
+    isSlideUp: false,
     isShowLink: false,
     showModalWindowLink: false
   }),
@@ -95,7 +95,7 @@ export default {
   z-index 5
   cursor pointer
 
-  .full-size-card__inner {
+  .full-size-card__wrapper {
     position relative
     top -100%
     width auto
@@ -148,34 +148,22 @@ export default {
           padding 0
         }
 
-        .title {
-          font-family sans-serif
-          font-size 20px
-          color #fff
-        }
-
-        &__date {
+        .card__date {
           position relative
           padding 0
           margin 0
         }
 
-        .date {
-          font-family sans-serif
-          color #fff
-          font-size 14px
+        &:after {
+          content '';
+          position absolute
+          top 50%
+          left 100%
+          transform translate(-50%, -50%) rotate(90deg)
+          width 44px
+          height 1px
+          background-color #64B5A2
         }
-      }
-
-      &__main-data:after {
-        content '';
-        position absolute
-        top 50%
-        left 100%
-        transform translate(-50%, -50%) rotate(90deg)
-        width 44px
-        height 1px
-        background-color #64B5A2
       }
 
       &__block-control-task {

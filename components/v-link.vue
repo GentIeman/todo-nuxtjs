@@ -54,6 +54,7 @@ export default {
     height 500px
     background-color #272732
     border-radius 10px
+    overflow auto
 
     &__header {
       display flex

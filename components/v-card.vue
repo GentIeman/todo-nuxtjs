@@ -5,7 +5,7 @@
                  :checked-force="data.status"></vs-checkbox>
     <div class="card__main-data main-data">
       <header>
-        <h3 class="card__title title">{{ data.title }}</h3>
+        <h3 class="card__title title" :title="data.title">{{ data.title }}</h3>
       </header>
       <p class="card__date date">{{ data.date }} {{ formatHours(data.date) }}</p>
     </div>

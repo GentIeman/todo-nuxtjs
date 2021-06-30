@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="link-task" :class="{'show-link-task' : isShowLink}">
-        <a href="#" class="link-task__link link" @click="showModalWindowLink = true">Сделать связь с {{ '' }}
+        <a href="#" class="link-task__link link" @click="showModalWindowLink = true">Сделать связь с <span v-show="data.linked">другой</span>
           карточкой</a>
       </div>
     </div>
@@ -52,7 +52,8 @@ export default {
     showFullSizeCard: false,
     isSlideUp: false,
     isShowLink: false,
-    showModalWindowLink: false
+    showModalWindowLink: false,
+    test: false
   }),
   props: ["data"],
   mixins: [formatHours],
@@ -65,7 +66,7 @@ export default {
       changeTask: 'changeTask'
     }),
     closeTask() {
-      this.isSlide = true;
+      this.isSlideUp = true;
       this.isShowLink = false;
       setInterval(() => {
         this.$emit('close');
@@ -236,6 +237,7 @@ export default {
 
   .block-link {
     position relative
+    top 50px
     width 800px
     height auto
 

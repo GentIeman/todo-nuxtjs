@@ -15,12 +15,28 @@
           <img class="full-size-card__trash-icon" src="/icons/fi-rr-trash.svg" alt="icon"
                width="25" height="25" @click="removeTask(data.id)">
         </div>
-        <div v-if="data.linked">
-          {{ getTaskById(data.linked).title }}
-        </div>
       </div>
       <div class="link-task" :class="{'show-link-task' : isShowLink}">
-        <a href="#" class="link-task__link link" @click="showModalWindowLink = true">Сделать связь с карточкой</a>
+        <a href="#" class="link-task__link link" @click="showModalWindowLink = true">Сделать связь с {{ '' }}
+          карточкой</a>
+      </div>
+    </div>
+    <div class="block-link" v-if="data.linked">
+      <div class="block-link__bunch">
+        <img :src="'/icons/bunch.svg'" alt="icon" width="30px" height="30px">
+      </div>
+      <div class="linked-card">
+        <vs-checkbox dark class="linked-card__checkbox"
+                     @change="changeTask({id: data.id, toEdit: 'status', value: !data.status})"
+                     :checked-force="data.status"></vs-checkbox>
+        <div class="linked-card__main-data">
+          <header class="linked-card__item linked-card__header">
+            <h2 class="title">{{ getTaskById(data.linked).title }}</h2>
+          </header>
+          <div class="linked-card__item linked-card__hour">
+            <p class="date">{{ getTaskById(data.linked).date }} {{ formatHours(getTaskById(data.linked).date) }}</p>
+          </div>
+        </div>
       </div>
     </div>
     <v-link v-if="showModalWindowLink" @close="showModalWindowLink = false" :currentId="data.id"/>
@@ -228,6 +244,72 @@ export default {
         top -100%
       }
     }
+  }
+
+  .block-link {
+    position relative
+    width 800px
+    height auto
+
+    &__bunch {
+      display flex
+      justify-content center
+      align-items center
+      width 100%
+      height 50px
+    }
+
+    .linked-card {
+      display flex
+      align-items center
+      position relative
+      min-width 800px
+      background-color #272732
+      height 80px
+      border-radius 10px
+
+      &__main-data {
+        display flex
+        justify-content center
+        align-items flex-start
+        flex-direction column
+        flex-wrap wrap
+        position relative
+        left 30px
+        width auto
+        height 100%
+        padding 0 15px
+
+        &:after {
+          content '';
+          position absolute
+          top 50%
+          left 100%
+          transform translate(-50%, -50%) rotate(90deg)
+          width 44px
+          height 1px
+          background-color #64B5A2
+        }
+      }
+
+      &__checkbox {
+        position relative
+        top 0
+        left 25px
+      }
+    }
+  }
+
+  .title {
+    font-family sans-serif
+    font-size 20px
+    color #fff
+  }
+
+  .date {
+    font-family sans-serif
+    color #fff
+    font-size 14px
   }
 }
 </style>

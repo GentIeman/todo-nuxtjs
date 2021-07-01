@@ -47,6 +47,24 @@ export const actions = {
       value: payload.linkTo,
       id: payload.id
     })
+    commit('editTask', {
+      toEdit : "linked",
+      value: payload.id,
+      id: payload.linkTo
+    })
+  },
+  removeLink({commit, getters}, payload) {
+    commit('editTask', {
+      toEdit : "linked",
+      value: null,
+      id: getters.getTaskById(payload.linkTo).linked
+    })
+
+    commit('editTask', {
+      toEdit : "linked",
+      value: null,
+      id: payload.linkTo
+    })
   },
 };
 

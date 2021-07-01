@@ -21,9 +21,9 @@
           карточкой</a>
       </div>
     </div>
-    <div class="block-link" v-if="data.linked">
-      <div class="block-link__bunch">
-        <img :src="'/icons/bunch.svg'" alt="icon" width="30px" height="30px">
+    <div class="linked" v-if="data.linked">
+      <div class="linked__bunch">
+        <img :src="'/icons/' + linkIcon + '.svg'" alt="icon" width="30px" height="30px" @mousemove="linkIcon = 'cancel'" @mouseleave="linkIcon = 'bunch'" @click="deleteLink">
       </div>
       <div class="linked-card">
         <vs-checkbox dark class="linked-card__checkbox"
@@ -53,12 +53,12 @@ export default {
     isSlideUp: false,
     isShowLink: false,
     showModalWindowLink: false,
-    test: false
+    linkIcon: 'bunch',
   }),
   props: ["data"],
   mixins: [formatHours],
   computed: {
-    ...mapGetters(['getTaskById'])
+    ...mapGetters({getTaskById: 'getTaskById'})
   },
   methods: {
     ...mapActions({
@@ -74,9 +74,7 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => {
-      this.isShowLink = true;
-    }, 900)
+    this.isShowLink = true;
   }
 }
 </script>

@@ -68,9 +68,10 @@ export default {
     closeTask() {
       this.isSlideUp = true;
       this.isShowLink = false;
-      setInterval(() => {
-        this.$emit('close');
-      }, 900)
+      this.$emit('close')
+    },
+    deleteLink() {
+      this.data.linked = null
     }
   },
   mounted() {

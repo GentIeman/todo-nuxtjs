@@ -6,15 +6,13 @@
           <label>Задача</label>
           <p class="card__title title">{{ data.title }}</p>
         </div>
-        <div v-if="data.linked">
-          {{ getTaskById(data.linked).title }}
-        </div>
         <div class="card__item card__content-date">
           <label>Время выполения</label>
           <p class="card__date date">{{ data.date }} {{ formatHours(data.date) }}</p>
         </div>
       </div>
-      <div class="card__item card__btn card__icon-link" :class="{'card__btn_click' : relationStyle}" @click="createLink" @mouseup="relationStyle = false" @mousedown="relationStyle = true">
+      <div class="card__item card__btn card__icon-link" :class="{'card__btn_click' : relationStyle}" @click="createLink"
+           @mouseup="relationStyle = false" @mousedown="relationStyle = true">
         <img class="icon-link" :src="'/icons/' + hoverIcon  +  '.svg'" alt="icon" width="25px" height="25px">
       </div>
     </div>

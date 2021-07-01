@@ -47,7 +47,7 @@ export const actions = {
       value: payload.linkTo,
       id: payload.id
     })
-  }
+  },
 };
 
 export const mutations = {
@@ -56,7 +56,7 @@ export const mutations = {
   },
   addTasks(state, data) {
     state.tasks.push(data)
-    state.lastAddedId=data.id
+    state.lastAddedId = data.id
   },
   removeTasks(state, taskId) {
     state.tasks.splice(state.tasks.findIndex(function (item) {

@@ -23,7 +23,7 @@
     </div>
     <div class="linked" v-if="data.linked">
       <div class="linked__bunch">
-        <img :src="'/icons/' + linkIcon + '.svg'" alt="icon" width="30px" height="30px" @mousemove="linkIcon = 'cancel'" @mouseleave="linkIcon = 'bunch'" @click="deleteLink">
+        <img :src="'/icons/' + linkIcon + '.svg'" alt="icon" width="30px" height="30px" @mousemove="linkIcon = 'cancel'" @mouseleave="linkIcon = 'bunch'" @click="dropLink">
       </div>
       <div class="linked-card">
         <vs-checkbox dark class="linked-card__checkbox"
@@ -63,15 +63,18 @@ export default {
   methods: {
     ...mapActions({
       removeTask: 'removeTask',
-      changeTask: 'changeTask'
+      changeTask: 'changeTask',
+      removeLink: 'removeLink'
     }),
     closeTask() {
       this.isSlideUp = true;
       this.isShowLink = false;
       this.$emit('close')
     },
-    deleteLink() {
-      this.data.linked = null
+    dropLink() {
+      this.removeLink({
+        linkTo: this.data.id,
+      })
     }
   },
   mounted() {
@@ -234,7 +237,7 @@ export default {
     }
   }
 
-  .block-link {
+  .linked {
     position relative
     top 50px
     width 800px
@@ -243,7 +246,6 @@ export default {
     &__bunch {
       display flex
       justify-content center
-      align-items center
       width 100%
       height 50px
     }

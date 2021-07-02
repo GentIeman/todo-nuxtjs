@@ -53,7 +53,7 @@ export default {
       this.dateTask = 0;
     },
     titleNormalize() {
-      this.titleTask = this.titleTask.trim()
+      this.titleTask = this.titleTask.trimStart()
     }
   },
   watch: {

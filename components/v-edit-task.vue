@@ -10,7 +10,7 @@
         <input type="number" min="0" class="modal-window-wrapper__edit-date-task-form edit-date-task-form"
                placeholder="Введите время выполнения" v-model="tempDate">
         <button type="submit" class="modal-window-wrapper__btn-add-task-modal btn-add-task-modal"
-                @click="editTask()" :disabled="(tempTitle.length < 1 || !(tempDate > 0))">Редактировать
+                @click="editTask()" :disabled="(tempTitle.length < 1 || tempTitle.startsWith(' ') || !(tempDate > 0))">Редактировать
         </button>
       </div>
     </div>

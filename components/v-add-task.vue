@@ -13,11 +13,11 @@
                width="16" height="16" @click="showModalWindow = false">
           <input type="text" autofocus spellcheck="true"
                  class="modal-window-wrapper__add-title-task-form add-title-task-form"
-                 placeholder="Введите название задачи" v-model="titleTask">
+                 placeholder="Введите название задачи" v-model="titleTask" @input="titleNormalize">
           <input type="number" class="modal-window-wrapper__add-date-task-form add-date-task-form"
                  placeholder="Время выполнения" v-model="dateTask" @keyup.enter="addTask">
           <button type="submit" class="modal-window-wrapper__btn-add-task-modal btn-add-task-modal"
-                  :disabled="((titleTask.length < 1) || titleTask.startsWith(' ') || !(dateTask > 0))" @click="addTask">Создать
+                  :disabled="(dateTask < 0 || titleTask.length < 1 )" @click="addTask">Создать
           </button>
         </div>
       </div>
@@ -52,6 +52,9 @@ export default {
       this.titleTask = '';
       this.dateTask = 0;
     },
+    titleNormalize() {
+      this.titleTask = this.titleTask.trim()
+    }
   },
   watch: {
     dateTask(value) {

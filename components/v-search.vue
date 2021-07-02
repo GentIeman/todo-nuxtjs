@@ -13,25 +13,27 @@
           </button>
         </label>
       </form>
-      <div class="results-container">
-        <ul>
-          <li class="result-card" v-for="searchElement in getSearchResult(someSearch)" :key="searchElement.id">
-            <vs-checkbox dark class="result-card__checkbox"
-                         @change="changeTask({id: searchElement.id, toEdit: 'status', value: !searchElement.status})"
-                         :checked-force="searchElement.status"></vs-checkbox>
-            <div class="result-card__main-data main-data">
-              <header>
-                <h3 class="result-card__title title">{{ searchElement.title }}</h3>
-              </header>
-              <p class="result-card__date date">{{ searchElement.date }} {{ formatHours(searchElement.date) }}</p>
-            </div>
-            <div class="result-card__block-control-task">
-              <img class="result-card__trash-icon" src="/icons/fi-rr-trash.svg" alt="icon"
-                   width="25" height="25" @click="removeTask(searchElement.id)">
-            </div>
-          </li>
-        </ul>
-      </div>
+        <div class="results-container">
+          <ul>
+            <transition-group name="slide-down">
+            <li class="result-card" v-for="searchElement in getSearchResult(someSearch)" :key="searchElement.id">
+              <vs-checkbox dark class="result-card__checkbox"
+                           @change="changeTask({id: searchElement.id, toEdit: 'status', value: !searchElement.status})"
+                           :checked-force="searchElement.status"></vs-checkbox>
+              <div class="result-card__main-data main-data">
+                <header>
+                  <h3 class="result-card__title title">{{ searchElement.title }}</h3>
+                </header>
+                <p class="result-card__date date">{{ searchElement.date }} {{ formatHours(searchElement.date) }}</p>
+              </div>
+              <div class="result-card__block-control-task">
+                <img class="result-card__trash-icon" src="/icons/fi-rr-trash.svg" alt="icon"
+                     width="25" height="25" @click="removeTask(searchElement.id)">
+              </div>
+            </li>
+            </transition-group>
+          </ul>
+        </div>
     </section>
   </div>
 </template>
@@ -225,5 +227,13 @@ export default {
     border none
     border-radius 10px
   }
+}
+
+.slide-down-enter-active, .slide-down-leave-active {
+  transition: opacity .3s;
+}
+
+.slide-down-enter, .slide-down-leave-active {
+  opacity: 0;
 }
 </style>

@@ -13,7 +13,8 @@
       </div>
       <div class="card__item card__btn card__icon-link" :class="{'card__btn_click' : relationStyle}" @click="createLink"
            @mouseup="relationStyle = false" @mousedown="relationStyle = true">
-        <img class="icon-link" :src="'/icons/' + hoverIcon  +  '.svg'" alt="icon" width="25px" height="25px">
+        <img v-if="!data.linked" class="icon-link" :src="'/icons/unlink.svg'" alt="icon" width="25px" height="25px">
+        <img v-else class="icon-link" :src="'/icons/link.svg'" alt="icon" width="25px" height="25px">
       </div>
     </div>
   </div>

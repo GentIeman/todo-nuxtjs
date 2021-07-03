@@ -13,27 +13,27 @@
           </button>
         </label>
       </form>
-      <div class="results-container">
-        <ul>
-          <li class="result-card" v-for="searchElement in getSearchResult(someSearch)" :key="searchElement.id">
-            <div class="card">
-              <vs-checkbox dark class="card__checkbox"
+        <div class="results-container">
+          <ul>
+            <transition-group name="slide-down">
+            <li class="result-card" v-for="searchElement in getSearchResult(someSearch)" :key="searchElement.id">
+              <vs-checkbox dark class="result-card__checkbox"
                            @change="changeTask({id: searchElement.id, toEdit: 'status', value: !searchElement.status})"
                            :checked-force="searchElement.status"></vs-checkbox>
-              <div class="card__main-data main-data">
+              <div class="result-card__main-data main-data">
                 <header>
-                  <h3 class="card__title title">{{ searchElement.title }}</h3>
+                  <h3 class="result-card__title title">{{ searchElement.title }}</h3>
                 </header>
-                <p class="card__date date">{{ searchElement.date }} {{ formatHours(searchElement.date) }}</p>
+                <p class="result-card__date date">{{ searchElement.date }} {{ formatHours(searchElement.date) }}</p>
               </div>
-              <div class="card__block-control-task">
-                <img class="card__trash-icon" src="/icons/fi-rr-trash.svg" alt="icon"
+              <div class="result-card__block-control-task">
+                <img class="result-card__trash-icon" src="/icons/fi-rr-trash.svg" alt="icon"
                      width="25" height="25" @click="removeTask(searchElement.id)">
               </div>
-            </div>
-          </li>
-        </ul>
-      </div>
+            </li>
+            </transition-group>
+          </ul>
+        </div>
     </section>
   </div>
 </template>
@@ -93,144 +93,147 @@ export default {
       border-radius 0 0 10px 10px
 
       .result-card {
+        display flex
+        align-items center
+        position relative
+        width auto
+        height 77px
+        background-color #272732
+        cursor pointer
+        border-bottom solid 1.4px #252525
 
-        .card {
-          display flex
-          align-items center
+        &:hover {
+          background-color #2c3e50
+        }
+
+        &__checkbox {
           position relative
+          top 0
+          left 25px
+        }
+
+        &__main-data {
+          display flex
+          justify-content center
+          align-items flex-start
+          flex-direction column
+          flex-wrap wrap
+          position relative
+          left 30px
           width auto
-          height auto
-          min-height 77px
-          background-color #272732
-          cursor pointer
-          transition all .5s ease-in
-          border-bottom solid 1.4px #252525
+          height 100%
+          padding 0 15px
 
-          &:hover {
-            background-color #2c3e50
-          }
-
-          &__checkbox {
+          .card__title {
             position relative
-            top 0
-            left 25px
+            margin 0
+            padding 0
           }
 
-          &__main-data {
-            display flex
-            justify-content center
-            align-items flex-start
-            flex-direction column
-            flex-wrap wrap
+          .title {
+            font-family sans-serif
+            font-size 20px
+            color #fff
+          }
+
+          .card__date {
             position relative
-            left 30px
-            width auto
-            height 100%
-            padding 0 15px
-
-            .card__title {
-              position relative
-              margin 0
-              padding 0
-            }
-
-            .title {
-              font-family sans-serif
-              font-size 20px
-              color #fff
-            }
-
-            .card__date {
-              position relative
-              padding 0
-              margin 0
-            }
-
-            .date {
-              font-family sans-serif
-              color #fff
-              font-size 14px
-            }
+            padding 0
+            margin 0
           }
 
-          &__main-data:after {
-            content '';
-            position absolute
-            top 50%
-            left 100%
-            transform translate(-50%, -50%) rotate(90deg)
-            width 44px
-            height 1px
-            background-color #64B5A2
+          .date {
+            font-family sans-serif
+            color #fff
+            font-size 14px
           }
+        }
 
-          &__block-control-task {
-            display flex
-            position absolute
-            right 0
-            justify-content center
-            align-items center
-            width 80px
-            height 100%
+        &__main-data:after {
+          content '';
+          position absolute
+          top 50%
+          left 100%
+          transform translate(-50%, -50%) rotate(90deg)
+          width 44px
+          height 1px
+          background-color #64B5A2
+        }
 
-            .card__trash-icon {
-              margin 0
-              cursor pointer
-            }
+        &__block-control-task {
+          display flex
+          position absolute
+          right 0
+          justify-content center
+          align-items center
+          width 80px
+          height 100%
+
+          .card__trash-icon {
+            margin 0
+            cursor pointer
           }
         }
       }
     }
+  }
 
-    .search {
-      position relative
-      top 0
-      left 0
-      width 750px
-      height 60px
-      padding 0 20px
-      background-color #1E1E1E
-      border-radius 10px
-      color #ccc
-      outline none
-      font-size 17px
-      border none
+  .search {
+    position relative
+    top 0
+    left 0
+    width 750px
+    height 60px
+    padding 0 20px
+    background-color #1E1E1E
+    border-radius 10px
+    color #ccc
+    outline none
+    font-size 17px
+    border none
 
-      &:before {
-        content ('')
-        position absolute
-        bottom 0
-        left 0
-        width 0
-        height 3px
-        background-color red
-        transition 0.5s
-      }
-
-      &:hover:before {
-        width 100%
-      }
-    }
-
-    .search__btn-search-task {
-      display flex
-      justify-content center
-      align-items center
+    &:before {
+      content ('')
       position absolute
-      top 50%
-      right 30px
-      transform translate(-50%, -50%)
-      width 30px
-      height 30px
+      bottom 0
+      left 0
+      width 0
+      height 3px
+      background-color red
+      transition 0.5s
     }
 
-    .btn-search-task {
-      background linear-gradient(30deg, #95F9C3, #0B3866)
-      cursor pointer
-      transition all .5s ease-in-out
-      border none
-      border-radius 10px
+    &:hover:before {
+      width 100%
     }
   }
+
+  .search__btn-search-task {
+    display flex
+    justify-content center
+    align-items center
+    position absolute
+    top 50%
+    right 30px
+    transform translate(-50%, -50%)
+    width 30px
+    height 30px
+  }
+
+  .btn-search-task {
+    background linear-gradient(30deg, #95F9C3, #0B3866)
+    cursor pointer
+    transition all .5s ease-in-out
+    border none
+    border-radius 10px
+  }
+}
+
+.slide-down-enter-active, .slide-down-leave-active {
+  transition: opacity .3s;
+}
+
+.slide-down-enter, .slide-down-leave-active {
+  opacity: 0;
 }
 </style>

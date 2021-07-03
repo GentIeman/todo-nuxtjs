@@ -6,11 +6,11 @@
         <img class="modal-window-wrapper__close-modal-window" src="/icons/fi-rr-cross.svg" alt="icon"
              width="16" height="16" @click="closeModalWindowEdit()">
         <input type="text" class="modal-window-wrapper__edit-title-task-form edit-title-task-form"
-               placeholder="Введите название задачи" v-model="tempTitle">
+               placeholder="Введите название задачи" v-model="tempTitle" @input="titleNormalize">
         <input type="number" min="0" class="modal-window-wrapper__edit-date-task-form edit-date-task-form"
                placeholder="Введите время выполнения" v-model="tempDate">
         <button type="submit" class="modal-window-wrapper__btn-add-task-modal btn-add-task-modal"
-                @click="editTask()" :disabled="(tempTitle.length < 1 || !(tempDate > 0))">Редактировать
+                @click="editTask()" :disabled="(tempDate < 0 || tempTitle.length < 1 )">Редактировать
         </button>
       </div>
     </div>
@@ -46,6 +46,9 @@ export default {
       this.changeTask({id: this.id, toEdit: 'title', value: this.tempTitle})
       this.$emit('edited')
     },
+    titleNormalize() {
+      this.tempTitle = this.tempTitle.trimStart()
+    }
   },
   watch: {
     tempDate(value) {

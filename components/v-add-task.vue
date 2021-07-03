@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <svg class="intro-icon" v-if="showModalWindow === false && this.getTasks < 1" id="Layer_1" width="250px" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><style>.cls-1{font-size:50.14px;fill:#fff;font-family:SegoePrint-Bold, Segoe Print;font-weight:700;}.cls-2,.cls-3{fill:none;stroke:#fff;stroke-linecap:round;stroke-width:9.57px;}.cls-2{stroke-miterlimit:10;}.cls-3{stroke-linejoin:round;stroke-dasharray:347.68;}</style></defs><text class="cls-1" transform="translate(12 109.15)">Добавить задачу</text><path class="cls-2" d="M459.51,423.43a249.35,249.35,0,0,1-160.2-57.94"/><path class="cls-2" d="M267.06,333.24A249.35,249.35,0,0,1,209.12,173"/><polygon class="cls-3" points="500 423.27 479.75 434.96 459.51 446.65 459.51 423.27 459.51 399.89 479.75 411.58 500 423.27"/></svg>
     <section class="container__btn-add-task btn-add-task" @click="showModalWindow = true">
       <img class="container__btn-search btn-search" src="/icons/fi-rr-plus.svg" alt="icon" width="22"
@@ -13,11 +13,11 @@
                width="16" height="16" @click="showModalWindow = false">
           <input type="text" autofocus spellcheck="true"
                  class="modal-window-wrapper__add-title-task-form add-title-task-form"
-                 placeholder="Введите название задачи" v-model="titleTask">
+                 placeholder="Введите название задачи" v-model="titleTask" @input="titleNormalize">
           <input type="number" class="modal-window-wrapper__add-date-task-form add-date-task-form"
                  placeholder="Время выполнения" v-model="dateTask" @keyup.enter="addTask">
           <button type="submit" class="modal-window-wrapper__btn-add-task-modal btn-add-task-modal"
-                  :disabled="(titleTask.length < 1 || !(dateTask > 0))" @click="addTask">Создать
+                  :disabled="(dateTask < 1 || titleTask.length < 1)" @click="addTask">Создать
           </button>
         </div>
       </div>
@@ -52,6 +52,9 @@ export default {
       this.titleTask = '';
       this.dateTask = 0;
     },
+    titleNormalize() {
+      this.titleTask = this.titleTask.trimStart()
+    }
   },
   watch: {
     dateTask(value) {
@@ -64,7 +67,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-div {
+.page {
   position absolute
   bottom 0
   right 0

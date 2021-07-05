@@ -6,7 +6,7 @@
       </header>
       <div class="form__inner">
         <div class="form__list">
-          <v-card-link v-for="task in getTasks" :data="task" :key="task.id" v-show="task.id !== currentId" :parentId="currentId"/>
+          <v-list-item v-for="task in getTasks" :data="task" :key="task.id" v-show="task.id !== currentId" :parentId="currentId"/>
         </div>
       </div>
     </div>
@@ -15,7 +15,7 @@
 
 <script>
 import {mapGetters} from 'vuex'
-import VCardLink from "./v-card-link";
+import VCardLink from "./v-list-item";
 
 export default {
   name: "Linked",
